@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -110,44 +110,44 @@ html {
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  /* Warm Artisanal Zine palette */
+  /* Warm Community palette */
   --background: 40 38% 97%;
-  --foreground: 220 40% 16%;
-  --border: 36 22% 82%;
-  --card: 38 32% 93%;
-  --card-foreground: 220 40% 16%;
-  --card-border: 36 22% 80%;
+  --foreground: 214 30% 18%;
+  --border: 36 22% 86%;
+  --card: 38 30% 93%;
+  --card-foreground: 214 30% 18%;
+  --card-border: 36 22% 86%;
   --sidebar: 40 38% 97%;
-  --sidebar-foreground: 220 40% 16%;
-  --sidebar-border: 36 22% 82%;
-  --sidebar-primary: 220 43% 22%;
-  --sidebar-primary-foreground: 40 38% 97%;
-  --sidebar-accent: 38 32% 93%;
-  --sidebar-accent-foreground: 220 40% 16%;
-  --sidebar-ring: 220 43% 22%;
-  --popover: 40 38% 97%;
-  --popover-foreground: 220 40% 16%;
-  --popover-border: 36 22% 82%;
-  --primary: 220 43% 22%;
-  --primary-foreground: 40 38% 97%;
-  --secondary: 10 52% 48%;
-  --secondary-foreground: 0 0% 100%;
+  --sidebar-foreground: 214 30% 18%;
+  --sidebar-border: 36 22% 86%;
+  --sidebar-primary: 214 65% 32%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 38 30% 93%;
+  --sidebar-accent-foreground: 214 30% 18%;
+  --sidebar-ring: 214 65% 32%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 214 30% 18%;
+  --popover-border: 36 22% 86%;
+  --primary: 214 65% 32%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 158 36% 75%;
+  --secondary-foreground: 214 65% 20%;
   --muted: 38 22% 89%;
-  --muted-foreground: 35 14% 46%;
-  --accent: 44 75% 58%;
-  --accent-foreground: 220 40% 16%;
+  --muted-foreground: 214 15% 46%;
+  --accent: 45 88% 61%;
+  --accent-foreground: 214 30% 18%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --input: 38 22% 86%;
-  --ring: 220 43% 22%;
-  --chart-1: 10 52% 48%;
-  --chart-2: 220 43% 22%;
-  --chart-3: 44 75% 58%;
-  --chart-4: 201 40% 55%;
-  --chart-5: 150 30% 40%;
+  --input: 38 22% 88%;
+  --ring: 214 65% 32%;
+  --chart-1: 0 70% 65%;
+  --chart-2: 214 65% 32%;
+  --chart-3: 45 88% 61%;
+  --chart-4: 158 36% 55%;
+  --chart-5: 0 0% 60%;
 
-  --app-font-sans: 'DM Sans', sans-serif;
-  --app-font-serif: 'Playfair Display', serif;
+  --app-font-sans: 'Nunito', sans-serif;
+  --app-font-serif: 'Fredoka', sans-serif;
   --app-font-mono: Menlo, monospace;
   --radius: .5rem; /* 8px */
   --shadow-2xs: 0px 2px 0px 0px hsl(215 40% 20% / 0.05);
@@ -238,7 +238,7 @@ html {
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Fredoka', sans-serif;
   }
 }
 

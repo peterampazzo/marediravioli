@@ -1,0 +1,325 @@
+Completely redesign and refactor the website shown in the reference image.
+
+IMPORTANT:
+This website is NOT a restaurant, food startup, e-commerce store, luxury food brand, delivery service, or commercial business.
+
+Mare di Ravioli is a small Copenhagen-based community initiative that brings people together around handmade ravioli while supporting ocean conservation efforts.
+
+People do NOT order food online.
+There is NO delivery.
+There is NO shipping.
+There is NO storefront.
+
+Participants simply sign up for an upcoming ravioli batch and pick it up in Copenhagen on a specific date. The focus is community, sustainability, local connection, and ocean conservation.
+
+The website should feel like:
+
+- a local community project
+- a volunteer-driven initiative
+- a neighborhood gathering
+- a small environmental nonprofit
+- a friendly Copenhagen collective
+
+NOT:
+
+- an expensive restaurant
+- an artisan luxury food brand
+- a premium startup
+- a commercial landing page
+- a delivery service
+
+--------------------------------------------------
+1. REMOVE THE GALLERY SECTION COMPLETELY
+--------------------------------------------------
+
+Delete the entire Gallery section and all associated code.
+
+Do not replace it with another gallery.
+
+Instead, use a few larger, meaningful images throughout the page that support the story and community mission.
+
+--------------------------------------------------
+2. REBUILD THE NAVBAR WITH A CENTERPIECE LOGO
+--------------------------------------------------
+
+The current header layout feels broken and unbalanced.
+
+Create a custom navigation layout with:
+
+CENTER:
+- A large semi-circle, scalloped tab, or rounded badge that sits centered in the navbar.
+- The shape should extend downward and overlap into the Hero section.
+- Place the Mare di Ravioli round logo inside this shape.
+- Make this the primary visual element of the page.
+
+LEFT NAV:
+- About
+- Our Mission
+
+RIGHT NAV:
+- Events
+- Join Us
+
+Requirements:
+- perfectly balanced layout
+- fully responsive
+- no overlapping elements
+- logo remains centered on all screen sizes
+- playful and approachable
+
+--------------------------------------------------
+3. FRIENDLY TYPOGRAPHY
+--------------------------------------------------
+
+Remove all luxury-style serif typography.
+
+The current font feels exclusive, editorial, and expensive.
+
+Replace with friendly rounded fonts such as:
+
+- Fredoka
+- Nunito
+- Quicksand
+
+Preferred setup:
+
+Headings:
+- Fredoka or Nunito ExtraBold
+
+Body:
+- Nunito or Quicksand
+
+Typography should feel:
+
+- warm
+- welcoming
+- optimistic
+- human
+- community-oriented
+
+--------------------------------------------------
+4. REDESIGN THE HERO SECTION
+--------------------------------------------------
+
+The hero should immediately communicate community and purpose.
+
+Remove any visual cues that suggest a food product launch or commercial offering.
+
+Example headline options:
+
+"Making Ravioli. Helping Oceans."
+
+"Good Food, Good People, Cleaner Seas."
+
+"Handmade Ravioli for a Better Ocean."
+
+Supporting text:
+
+"Mare di Ravioli is a Copenhagen community project where people come together around handmade ravioli while supporting ocean conservation and local environmental initiatives."
+
+Primary CTA:
+- Join the Next Batch
+
+Secondary CTA:
+- Learn About the Mission
+
+Important:
+The wording should clearly communicate that participants pick up ravioli in Copenhagen on scheduled dates.
+
+Example:
+
+"Reserve a spot for the next community batch and pick it up in Copenhagen."
+
+Never mention delivery.
+
+--------------------------------------------------
+5. REPLACE COMMERCIAL LANGUAGE
+--------------------------------------------------
+
+Remove language such as:
+
+- Order Now
+- Limited Batch Drop
+- Fresh Delivery
+- Shop
+- Product Launch
+- Buy Ravioli
+
+Replace with:
+
+- Join the Next Batch
+- Upcoming Pickup
+- Community Ravioli Day
+- Reserve a Pickup Spot
+- Join the Gathering
+- Get Involved
+
+The tone should focus on participation, not purchasing.
+
+--------------------------------------------------
+6. COMMUNITY-FOCUSED CONTENT SECTIONS
+--------------------------------------------------
+
+Create sections such as:
+
+### Our Story
+
+Explain:
+
+- how Mare di Ravioli started
+- the connection between ravioli and ocean conservation
+- why community matters
+
+### What We Do
+
+Use friendly icon cards:
+
+🍝 Handmade Ravioli
+
+🌊 Ocean Conservation
+
+🤝 Community Gatherings
+
+♻️ Sustainable Practices
+
+### How It Works
+
+1. Reserve a Spot
+2. We Prepare the Batch
+3. Pick Up in Copenhagen
+4. Contributions Support Ocean Projects
+
+Important:
+Never reference delivery or shipping.
+
+--------------------------------------------------
+7. UPCOMING PICKUPS SECTION
+--------------------------------------------------
+
+Replace any order form with a community-focused signup section.
+
+Example content:
+
+Upcoming Pickup
+
+Date:
+Saturday, June 28
+
+Pickup Location:
+Copenhagen
+
+Batch:
+Ricotta, Lemon & Fresh Spinach
+
+CTA:
+Reserve a Pickup Spot
+
+This should feel like signing up for a community event rather than buying a product.
+
+--------------------------------------------------
+8. REDUCE EXCESSIVE WHITESPACE
+--------------------------------------------------
+
+The current design feels overly luxurious because of excessive spacing.
+
+Reduce vertical gaps and improve content density.
+
+Target feel:
+
+- neighborhood flyer
+- local initiative
+- community newsletter
+
+NOT:
+
+- luxury landing page
+- premium editorial website
+
+--------------------------------------------------
+9. COLOR SYSTEM
+--------------------------------------------------
+
+Keep the warm cream background.
+
+Primary colors:
+
+Ocean Blue:
+#1D4E89
+
+Sunny Yellow:
+#F4C542
+
+Supporting colors:
+
+Seafoam:
+#A7D7C5
+
+Soft Coral:
+#F28C8C
+
+Use brighter and friendlier accents.
+
+Avoid dark luxury aesthetics.
+
+--------------------------------------------------
+10. BUTTONS & SOCIAL LINKS
+--------------------------------------------------
+
+Buttons should:
+
+- be fully filled
+- highly visible
+- rounded corners
+- playful
+- cheerful
+
+Instagram CTA should be prominent.
+
+Instead of:
+
+@marediravioli
+
+Use:
+
+"Follow Our Community"
+
+Include an Instagram icon.
+
+--------------------------------------------------
+11. VISUAL STYLE
+--------------------------------------------------
+
+Use:
+
+- rounded corners
+- organic shapes
+- subtle hand-drawn details
+- friendly illustrations
+- soft shadows
+- playful section dividers
+
+Avoid:
+
+- luxury restaurant design
+- editorial magazine aesthetics
+- premium food branding
+- commercial product marketing
+- startup landing page patterns
+
+--------------------------------------------------
+12. OVERALL GOAL
+--------------------------------------------------
+
+The final website should feel like a Copenhagen-based community initiative where people gather around handmade ravioli and support ocean conservation.
+
+Visitors should feel invited to participate in something local, meaningful, and friendly.
+
+The primary action is:
+
+"Reserve a spot and pick up your ravioli in Copenhagen."
+
+NOT:
+
+"Buy food online."
+
+The experience should communicate community, sustainability, local pickup, and ocean conservation before it communicates ravioli.

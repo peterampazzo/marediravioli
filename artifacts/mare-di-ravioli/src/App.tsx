@@ -5,8 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import WhatWeDo from "@/components/WhatWeDo";
 import About from "@/components/About";
-import Gallery from "@/components/Gallery";
 import HowItWorks from "@/components/HowItWorks";
 import OrderForm from "@/components/OrderForm";
 import Footer from "@/components/Footer";
@@ -15,7 +15,7 @@ import type { BatchConfig } from "@/types/batch";
 const queryClient = new QueryClient();
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BATCH CONFIG — update these before each drop
+// BATCH CONFIG — update these before each community pickup
 // ─────────────────────────────────────────────────────────────────────────────
 const BATCH: BatchConfig = {
   nextPickupDate: "Saturday, June 28th",
@@ -30,9 +30,9 @@ function Home() {
       <Nav />
       <main className="flex-1">
         <Hero batch={BATCH} />
+        <WhatWeDo />
         <About />
         <HowItWorks />
-        <Gallery />
         <OrderForm batch={BATCH} />
       </main>
       <Footer />
