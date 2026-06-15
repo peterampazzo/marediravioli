@@ -89,7 +89,7 @@ export default function About() {
               className="overflow-hidden rounded-3xl aspect-[4/3] shadow-xl"
             >
               <img
-                src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=700"
+                src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?w=700"
                 alt="Ocean conservation"
                 className="w-full h-full object-cover"
               />

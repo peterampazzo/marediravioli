@@ -39,18 +39,15 @@ export default function Nav() {
             style={{
               background: "#1D4E89",
               borderRadius: "0 0 999px 999px",
-              padding: "10px 28px 22px",
+              padding: "8px 18px 18px",
               boxShadow: "0 6px 20px rgba(29,78,137,0.25)",
             }}
           >
             <img
               src={logoIcon}
               alt="Mare di Ravioli"
-              className="h-12 w-12 object-contain"
+              className="h-16 w-16 object-contain"
             />
-            <span className="text-[9px] font-semibold text-white/70 tracking-[0.2em] uppercase mt-1 leading-none">
-              Mare di Ravioli
-            </span>
           </a>
         </div>
 
@@ -58,7 +55,7 @@ export default function Nav() {
         <nav className="flex items-center gap-8 flex-1 justify-end">
           <a href="#how-it-works" className={linkClass} data-testid="link-nav-events">Events</a>
           <a href="#pickup" className={`${linkClass} bg-[#F4C542] text-foreground px-5 py-2 rounded-full font-bold hover:bg-[#f0bc30] transition-colors`} data-testid="link-nav-join">
-            Join Us
+            Order
           </a>
         </nav>
       </div>
@@ -82,12 +79,11 @@ export default function Nav() {
             style={{
               background: "#1D4E89",
               borderRadius: "0 0 999px 999px",
-              padding: "8px 20px 16px",
+              padding: "6px 16px 14px",
               boxShadow: "0 4px 14px rgba(29,78,137,0.22)",
             }}
           >
-            <img src={logoIcon} alt="Mare di Ravioli" className="h-9 w-9 object-contain" />
-            <span className="text-[8px] font-semibold text-white/70 tracking-widest uppercase mt-0.5 leading-none">MDR</span>
+            <img src={logoIcon} alt="Mare di Ravioli" className="h-11 w-11 object-contain" />
           </a>
         </div>
 
