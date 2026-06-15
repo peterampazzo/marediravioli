@@ -34,19 +34,22 @@ export default function Nav() {
         <div className="absolute left-1/2 -translate-x-1/2 top-0 flex justify-center z-20 pointer-events-none">
           <a
             href="#"
-            className="pointer-events-auto flex flex-col items-center"
+            className="pointer-events-auto flex items-center justify-center"
             data-testid="link-logo"
             style={{
+              width: 84,
+              height: 88,
               background: "#1D4E89",
               borderRadius: "0 0 999px 999px",
-              padding: "8px 18px 18px",
-              boxShadow: "0 6px 20px rgba(29,78,137,0.25)",
+              overflow: "hidden",
+              boxShadow: "0 8px 24px rgba(29,78,137,0.3)",
+              flexShrink: 0,
             }}
           >
             <img
               src={logoIcon}
               alt="Mare di Ravioli"
-              className="h-16 w-16 object-contain"
+              style={{ width: 200, height: 200, objectFit: "contain", flexShrink: 0 }}
             />
           </a>
         </div>
@@ -74,16 +77,19 @@ export default function Nav() {
         <div className="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20">
           <a
             href="#"
-            className="pointer-events-auto flex flex-col items-center"
+            className="pointer-events-auto flex items-center justify-center"
             data-testid="link-logo-mobile"
             style={{
+              width: 62,
+              height: 66,
               background: "#1D4E89",
               borderRadius: "0 0 999px 999px",
-              padding: "6px 16px 14px",
+              overflow: "hidden",
               boxShadow: "0 4px 14px rgba(29,78,137,0.22)",
+              flexShrink: 0,
             }}
           >
-            <img src={logoIcon} alt="Mare di Ravioli" className="h-11 w-11 object-contain" />
+            <img src={logoIcon} alt="Mare di Ravioli" style={{ width: 148, height: 148, objectFit: "contain", flexShrink: 0 }} />
           </a>
         </div>
 
