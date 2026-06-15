@@ -3,19 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { CheckCircle, Send, Instagram } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import type { BatchConfig } from "@/types/batch";
 
@@ -23,10 +11,7 @@ const orderSchema = z.object({
   name: z.string().min(2, { message: "Full name is required" }),
   phone: z.string().min(5, { message: "Phone number is required" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
-  quantity: z.coerce
-    .number()
-    .min(1, { message: "Minimum 1" })
-    .max(100, { message: "Maximum 100" }),
+  quantity: z.coerce.number().min(1, { message: "Minimum 1" }).max(100, { message: "Maximum 100" }),
   notes: z.string().optional(),
 });
 
@@ -41,7 +26,7 @@ export default function OrderForm({ batch }: OrderFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const form = useForm<OrderFormValues>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<OrderFormValues>({
     resolver: zodResolver(orderSchema),
     defaultValues: { name: "", phone: "", email: "", quantity: 1, notes: "" },
   });
@@ -56,251 +41,157 @@ export default function OrderForm({ batch }: OrderFormProps) {
       });
       setIsSuccess(true);
     } catch {
-      toast({
-        variant: "destructive",
-        title: "Something went wrong",
-        description: "We couldn't send your order. Please try again later.",
-      });
+      toast({ variant: "destructive", title: "Something went wrong", description: "Please try again later." });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  return (
-    <section id="order" className="py-24 bg-primary relative overflow-hidden">
-      {/* Wave decoration */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
-        <svg className="absolute top-0 w-full" viewBox="0 0 1440 120" fill="white" preserveAspectRatio="none">
-          <path d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,48L1440,43L1440,0L0,0Z" />
-        </svg>
-      </div>
+  const inputClass = "w-full bg-transparent border-b border-foreground/20 py-3 text-sm text-foreground placeholder:text-foreground/35 focus:outline-none focus:border-foreground/60 transition-colors";
+  const labelClass = "block text-[10px] font-semibold tracking-[0.18em] uppercase text-foreground/50 mb-1";
+  const errorClass = "text-xs text-secondary mt-1";
 
-      <div className="container mx-auto px-4 md:px-6 max-w-2xl relative z-10">
+  return (
+    <section id="order" className="py-24 bg-card border-t border-foreground/8">
+      <div className="container mx-auto px-5 md:px-8 max-w-2xl">
+
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-3">Place Your Order</h2>
-          <p className="text-white/70 text-lg">Reserve your hand-made fresh ravioli — and help save the ocean.</p>
+          <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-foreground/40 mb-3">Join the next batch</p>
+          <h2 className="text-4xl md:text-5xl font-bold font-serif text-foreground">Place Your Order</h2>
+          <div className="w-12 h-px bg-foreground/20 mt-5" />
         </motion.div>
 
         <AnimatePresence mode="wait">
           {batch.isSoldOut ? (
-            /* ── SOLD OUT STATE ── */
+            /* SOLD OUT */
             <motion.div
               key="sold-out"
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              transition={{ duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] }}
-              className="bg-background rounded-3xl shadow-2xl border border-border/30 p-10 md:p-16 text-center"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="border border-foreground/12 p-10 text-center"
               data-testid="sold-out-message"
             >
-              <motion.div
-                initial={{ scale: 0, rotate: -20 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 180 }}
-                className="text-7xl mb-6"
-              >
-                🌊
-              </motion.div>
-              <h3 className="text-3xl font-black text-primary mb-4 leading-tight">
-                Wow, Copenhagen!
-              </h3>
-              <p className="text-lg text-muted-foreground mb-8 max-w-sm mx-auto leading-relaxed">
+              <p className="text-5xl mb-6">🌊</p>
+              <h3 className="font-serif font-bold text-2xl text-foreground mb-3">Wow, Copenhagen!</h3>
+              <p className="text-foreground/60 mb-8 max-w-sm mx-auto leading-relaxed">
                 We are fully booked for this batch. Follow our Instagram to catch the next ravioli wave!
               </p>
-              <Button
-                asChild
-                size="lg"
-                className="rounded-full px-8 h-14 font-black bg-primary hover:bg-primary/90 text-white"
+              <a
+                href="https://instagram.com/marediravioli"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-foreground text-[#FDFBF7] text-sm font-semibold tracking-wide transition-all hover:opacity-85"
                 data-testid="button-sold-out-instagram"
               >
-                <a
-                  href="https://instagram.com/marediravioli"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Instagram size={20} />
-                  @marediravioli
-                </a>
-              </Button>
+                <Instagram size={16} /> @marediravioli
+              </a>
             </motion.div>
           ) : (
-            /* ── ORDER FORM ── */
+            /* ORDER FORM */
             <motion.div
               key="form-container"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-background rounded-3xl shadow-2xl border border-border/30 overflow-hidden relative min-h-[520px]"
             >
-              {/* Batch info banner */}
-              <div className="bg-accent/20 border-b border-border/30 px-6 md:px-10 py-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
+              {/* Batch info */}
+              <div className="border border-foreground/12 p-5 mb-8 bg-[#FDFBF7]/60 flex flex-col sm:flex-row gap-4 sm:gap-10">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">Next pickup</p>
-                  <p className="font-black text-foreground">{batch.nextPickupDate}</p>
+                  <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-foreground/40 mb-1">Pickup date</p>
+                  <p className="font-serif font-bold text-foreground">{batch.nextPickupDate}</p>
                 </div>
-                <div className="hidden sm:block w-px h-8 bg-border" />
+                <div className="hidden sm:block w-px bg-foreground/12" />
                 <div>
-                  <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">This batch filling</p>
-                  <p className="font-black text-foreground">{batch.nextFilling}</p>
+                  <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-foreground/40 mb-1">This batch filling</p>
+                  <p className="font-serif font-bold text-foreground">{batch.nextFilling}</p>
                 </div>
               </div>
 
               <AnimatePresence mode="wait">
                 {!isSuccess ? (
-                  <motion.div
+                  <motion.form
                     key="form"
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 16 }}
-                    transition={{ duration: 0.4 }}
-                    className="p-6 md:p-10"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-8"
                   >
-                    <Form {...form}>
-                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="font-black">Full Name</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Jane Smith" {...field} className="bg-card/50" data-testid="input-name" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={form.control}
-                            name="phone"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="font-black">Phone Number</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="+45 12 34 56 78" {...field} className="bg-card/50" data-testid="input-phone" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <label className={labelClass}>Full Name</label>
+                        <input {...register("name")} placeholder="Jane Smith" className={inputClass} data-testid="input-name" />
+                        {errors.name && <p className={errorClass}>{errors.name.message}</p>}
+                      </div>
+                      <div>
+                        <label className={labelClass}>Phone Number</label>
+                        <input {...register("phone")} placeholder="+45 12 34 56 78" className={inputClass} data-testid="input-phone" />
+                        {errors.phone && <p className={errorClass}>{errors.phone.message}</p>}
+                      </div>
+                    </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="font-black">Email Address</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="jane@example.com" {...field} className="bg-card/50" data-testid="input-email" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={form.control}
-                            name="quantity"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="font-black">Quantity of Ravioli</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    type="number"
-                                    min="1"
-                                    max="100"
-                                    placeholder="e.g. 50"
-                                    {...field}
-                                    className="bg-card/50"
-                                    data-testid="input-quantity"
-                                  />
-                                </FormControl>
-                                <FormDescription>Each serving ≈ 250g</FormDescription>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <label className={labelClass}>Email Address</label>
+                        <input {...register("email")} placeholder="jane@example.com" className={inputClass} data-testid="input-email" />
+                        {errors.email && <p className={errorClass}>{errors.email.message}</p>}
+                      </div>
+                      <div>
+                        <label className={labelClass}>Quantity of Ravioli</label>
+                        <input type="number" {...register("quantity")} min="1" max="100" placeholder="e.g. 50" className={inputClass} data-testid="input-quantity" />
+                        <p className="text-[10px] text-foreground/35 mt-1.5">Each serving ≈ 250g</p>
+                        {errors.quantity && <p className={errorClass}>{errors.quantity.message}</p>}
+                      </div>
+                    </div>
 
-                        <FormField
-                          control={form.control}
-                          name="notes"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="font-black">Special Notes / Allergies</FormLabel>
-                              <FormControl>
-                                <Textarea
-                                  placeholder="E.g. gluten-free, dairy-free, extra spicy..."
-                                  className="resize-none bg-card/50 min-h-[100px]"
-                                  {...field}
-                                  data-testid="input-notes"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                    <div>
+                      <label className={labelClass}>Special Notes / Allergies</label>
+                      <textarea {...register("notes")} placeholder="E.g. gluten-free, dairy-free..." rows={3}
+                        className="w-full bg-transparent border-b border-foreground/20 py-3 text-sm text-foreground placeholder:text-foreground/35 focus:outline-none focus:border-foreground/60 transition-colors resize-none"
+                        data-testid="input-notes" />
+                    </div>
 
-                        <Button
-                          type="submit"
-                          size="lg"
-                          className="w-full text-lg h-14 rounded-2xl font-black"
-                          disabled={isSubmitting}
-                          data-testid="button-submit-order"
-                        >
-                          {isSubmitting ? (
-                            "Sending your order…"
-                          ) : (
-                            <span className="flex items-center gap-2">
-                              Send Order <Send size={20} />
-                            </span>
-                          )}
-                        </Button>
-                      </form>
-                    </Form>
-                  </motion.div>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-4 bg-foreground text-[#FDFBF7] text-sm font-semibold tracking-[0.1em] uppercase transition-all hover:opacity-85 disabled:opacity-40"
+                      data-testid="button-submit-order"
+                    >
+                      {isSubmitting ? "Sending…" : "Send Order"}
+                    </button>
+                  </motion.form>
                 ) : (
                   <motion.div
                     key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
+                    className="py-16 text-center border border-foreground/12"
                     data-testid="success-message"
                   >
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                      className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6"
-                    >
-                      <CheckCircle className="w-12 h-12 text-primary" />
-                    </motion.div>
-                    <h3 className="text-3xl font-black text-primary mb-3">Thank you!</h3>
-                    <p className="text-lg font-bold text-foreground mb-2">We received your order.</p>
-                    <p className="text-muted-foreground mb-8 max-w-sm">
-                      We'll be in touch to confirm the details. Together we're saving the oceans — one raviolo at a time.
+                    <p className="text-4xl mb-6">🍝</p>
+                    <h3 className="font-serif font-bold text-2xl text-foreground mb-3">Thank you!</h3>
+                    <p className="text-foreground/60 mb-8 max-w-sm mx-auto leading-relaxed">
+                      We received your order. We'll be in touch to confirm the details — see you at pickup!
                     </p>
-                    <Button
-                      onClick={() => { form.reset(); setIsSuccess(false); }}
-                      variant="outline"
-                      size="lg"
-                      className="rounded-full px-8 border-primary/30 text-primary hover:bg-primary/5 font-bold"
+                    <button
+                      onClick={() => { reset(); setIsSuccess(false); }}
+                      className="text-sm font-semibold tracking-[0.12em] uppercase text-foreground/50 border-b border-foreground/30 pb-0.5 hover:text-foreground transition-colors"
                       data-testid="button-reset-order"
                     >
                       Place another order
-                    </Button>
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -1,47 +1,50 @@
 import { motion } from "framer-motion";
 
 const steps = [
-  { emoji: "🇩🇰", title: "Handmade in Copenhagen", description: "Crafted by hand with love, laughter, and a little flour." },
-  { emoji: "🌊", title: "Picked Up Fresh", description: "Still warm, perfectly floured — collect your batch at the pickup point." },
-  { emoji: "⏱️", title: "3 Minutes to Perfection", description: "Boiling salted water, 3 minutes. Done. Eat immediately." },
-  { emoji: "🌍", title: "Every Bite Saves the Ocean", description: "100% of proceeds go to ocean conservation." },
+  { n: "01", title: "Handmade in Copenhagen", body: "Crafted by hand every week with fresh, quality ingredients and a lot of love." },
+  { n: "02", title: "Picked Up Fresh", body: "Still warm, perfectly floured — collect your batch at the pickup point." },
+  { n: "03", title: "3 Minutes to Perfection", body: "Boiling salted water, 3 minutes. Done. Best eaten immediately." },
+  { n: "04", title: "Every Bite Saves the Ocean", body: "100% of proceeds go directly to ocean conservation projects." },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 bg-background">
-      <div className="container mx-auto px-5 md:px-6">
+    <section id="how-it-works" className="py-24 bg-card border-y border-foreground/8">
+      <div className="container mx-auto px-5 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-14"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-primary mb-3">How It Works</h2>
-          <div className="w-16 h-1.5 bg-secondary mx-auto rounded-full" />
+          <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-foreground/40 mb-3">The Process</p>
+          <h2 className="text-4xl md:text-5xl font-bold font-serif text-foreground">How It Works</h2>
+          <div className="w-12 h-px bg-foreground/20 mt-5" />
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 divide-foreground/10">
           {steps.map((step, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="flex flex-col items-center text-center p-5 md:p-6 rounded-3xl bg-card border border-border/50 shadow-sm"
-              data-testid={`card-how-it-works-${i}`}
+              transition={{ duration: 0.55, delay: i * 0.07 }}
+              className={`flex gap-8 py-10 px-6 md:px-8 ${
+                i % 2 === 0 ? "md:border-r" : ""
+              } border-foreground/10 ${
+                i < 2 ? "md:border-b" : ""
+              }`}
+              data-testid={`step-how-it-works-${i}`}
             >
-              <motion.div
-                whileHover={{ scale: 1.2, rotate: [0, -6, 6, 0] }}
-                transition={{ duration: 0.35 }}
-                className="text-4xl md:text-5xl mb-4"
-              >
-                {step.emoji}
-              </motion.div>
-              <h3 className="text-sm md:text-base font-black text-foreground mb-2 leading-tight">{step.title}</h3>
-              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+              <span className="font-serif font-bold text-4xl md:text-5xl text-foreground/15 leading-none shrink-0 select-none">
+                {step.n}
+              </span>
+              <div className="pt-1">
+                <h3 className="font-serif font-bold text-lg text-foreground mb-2 leading-snug">{step.title}</h3>
+                <p className="text-sm text-foreground/55 leading-relaxed">{step.body}</p>
+              </div>
             </motion.div>
           ))}
         </div>

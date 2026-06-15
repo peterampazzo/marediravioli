@@ -1,54 +1,152 @@
 import { motion } from "framer-motion";
 
-const images = [
-  { src: "https://images.unsplash.com/photo-1551183053-bf91798d047e?w=600", caption: "Butter & Sage", tag: "Classic" },
-  { src: "https://images.unsplash.com/photo-1608219992759-8d74ed8d76eb?w=600", caption: "Ricotta & Spinach", tag: "Vegetarian" },
-  { src: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600", caption: "Shared Joy", tag: "Community" },
-  { src: "https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600", caption: "Made by Hand", tag: "Artisan" },
-];
-
 export default function Gallery() {
   return (
-    <section id="gallery" className="py-20 bg-card">
-      <div className="container mx-auto px-5 md:px-6">
+    <section id="gallery" className="py-24 bg-[#FDFBF7]">
+      <div className="container mx-auto px-5 md:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-14"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-primary mb-3">Gallery</h2>
-          <div className="w-16 h-1.5 bg-accent mx-auto rounded-full" />
+          <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-foreground/40 mb-3">Our Creations</p>
+          <h2 className="text-4xl md:text-5xl font-bold font-serif text-foreground">Gallery</h2>
+          <div className="w-12 h-px bg-foreground/20 mt-5" />
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-4 md:gap-6">
-          {images.map((img, i) => (
+        {/* Asymmetric grid — desktop */}
+        <div className="hidden md:grid md:grid-cols-12 gap-5 md:gap-6">
+
+          {/* Large — left */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65 }}
+            className="col-span-7 flex flex-col gap-3"
+          >
+            <div className="overflow-hidden aspect-[4/3]">
+              <motion.img
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.55 }}
+                src="https://images.unsplash.com/photo-1551183053-bf91798d047e?w=800"
+                alt="Butter & Sage Ravioli"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="text-sm font-serif italic text-foreground/60">Butter & Sage — a classic done right.</p>
+          </motion.div>
+
+          {/* Small stack — right */}
+          <div className="col-span-5 flex flex-col gap-5">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.1 }}
+              className="flex flex-col gap-3"
+            >
+              <div className="overflow-hidden aspect-square">
+                <motion.img
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.55 }}
+                  src="https://images.unsplash.com/photo-1608219992759-8d74ed8d76eb?w=600"
+                  alt="Ricotta & Spinach"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-sm font-serif italic text-foreground/60">Ricotta & Fresh Spinach.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.18 }}
+              className="flex flex-col gap-3"
+            >
+              <div className="overflow-hidden aspect-[4/3]">
+                <motion.img
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.55 }}
+                  src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600"
+                  alt="Shared Joy"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-sm font-serif italic text-foreground/60">A moment of shared joy.</p>
+            </motion.div>
+          </div>
+
+          {/* Bottom row */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.1 }}
+            className="col-span-5 flex flex-col gap-3"
+          >
+            <div className="overflow-hidden aspect-[4/3]">
+              <motion.img
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.55 }}
+                src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600"
+                alt="The craft"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="text-sm font-serif italic text-foreground/60">Handcrafted, every time.</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.2 }}
+            className="col-span-7 flex flex-col gap-3"
+          >
+            <div className="overflow-hidden aspect-[16/9]">
+              <motion.img
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.55 }}
+                src="https://images.unsplash.com/photo-1584278858536-52532423b4b4?w=900"
+                alt="Fresh pasta table"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="text-sm font-serif italic text-foreground/60">The floured table. Every Saturday.</p>
+          </motion.div>
+
+        </div>
+
+        {/* Mobile — simple stack */}
+        <div className="md:hidden flex flex-col gap-8">
+          {[
+            { src: "https://images.unsplash.com/photo-1551183053-bf91798d047e?w=600", caption: "Butter & Sage — a classic done right." },
+            { src: "https://images.unsplash.com/photo-1608219992759-8d74ed8d76eb?w=600", caption: "Ricotta & Fresh Spinach." },
+            { src: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600", caption: "A moment of shared joy." },
+            { src: "https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600", caption: "Handcrafted, every time." },
+          ].map((img, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="flex flex-col gap-2 group cursor-pointer"
-              data-testid={`card-gallery-${i}`}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.55, delay: i * 0.06 }}
+              className="flex flex-col gap-2"
             >
-              <div className="rounded-2xl md:rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] shadow-md relative">
+              <div className="overflow-hidden aspect-[4/3]">
                 <motion.img
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ duration: 0.5 }}
                   src={img.src}
                   alt={img.caption}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-2 left-2 md:top-4 md:left-4">
-                  <span className="bg-primary text-white text-[10px] md:text-xs font-black uppercase tracking-wider px-2 py-1 md:px-3 rounded-full">
-                    {img.tag}
-                  </span>
-                </div>
-                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl md:rounded-3xl pointer-events-none" />
               </div>
-              <p className="text-center font-black text-sm md:text-base text-foreground">{img.caption}</p>
+              <p className="text-sm font-serif italic text-foreground/60">{img.caption}</p>
             </motion.div>
           ))}
         </div>

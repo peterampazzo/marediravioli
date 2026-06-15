@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import logoFull from "@assets/logo-full-white-transparent.png";
+import logoFull from "@assets/logo-full-dark-transparent.png";
 import type { BatchConfig } from "@/types/batch";
 
 interface HeroProps {
@@ -8,198 +7,151 @@ interface HeroProps {
 }
 
 export default function Hero({ batch }: HeroProps) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-  };
   const item = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.2, 0.65, 0.3, 0.9] } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.2, 0.65, 0.3, 0.9] } },
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-primary pt-16 pb-0">
-      {/* Subtle wave bg */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
-        <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 320" fill="white">
-          <path d="M0,192L48,181.3C96,171,192,149,288,160C384,171,480,213,576,218.7C672,224,768,192,864,176C960,160,1056,160,1152,176C1248,192,1344,224,1392,240L1440,256L1440,320L0,320Z" />
-        </svg>
-      </div>
+    <section className="relative bg-[#FDFBF7] min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-20 pb-12">
+      {/* Subtle grain texture overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")", backgroundSize: "128px" }}
+      />
 
-      <div className="container mx-auto px-5 md:px-6 relative z-10 w-full">
+      <div className="container mx-auto px-5 md:px-8 relative z-10">
 
-        {/* ── MOBILE LAYOUT (stacked, logo first) ── */}
+        {/* ── MOBILE layout ── */}
         <motion.div
-          className="flex flex-col items-center text-center lg:hidden py-8 gap-6"
-          variants={containerVariants}
+          className="flex flex-col items-center text-center gap-7 lg:hidden"
           initial="hidden"
           animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
         >
-          {/* Logo — big and centered */}
           <motion.div variants={item}>
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <img
-                src={logoFull}
-                alt="Mare di Ravioli"
-                className="w-52 h-52 object-contain drop-shadow-2xl"
-              />
-            </motion.div>
+            <motion.img
+              src={logoFull}
+              alt="Mare di Ravioli"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-52 h-52 object-contain"
+            />
           </motion.div>
 
-          {/* Title */}
-          <motion.h1 variants={item} className="text-6xl font-black text-white leading-[1.0]">
-            Mare di<br />Ravioli
-          </motion.h1>
+          <motion.div variants={item} className="space-y-2">
+            <h1 className="text-[3.5rem] leading-[1.0] font-bold font-serif text-foreground">
+              Mare di<br />Ravioli
+            </h1>
+            <p className="text-lg italic font-serif text-foreground/60">
+              Copenhagen's ravioli crew, saving one ocean at a time.
+            </p>
+          </motion.div>
 
-          {/* Tagline */}
-          <motion.p variants={item} className="text-lg text-white/80 font-bold -mt-2">
-            Save the Oceans, One Raviolo at a Time.
-          </motion.p>
+          <motion.hr variants={item} className="w-16 border-foreground/20" />
 
-          {/* Batch info */}
           {!batch.isSoldOut ? (
             <motion.div
               variants={item}
-              className="bg-white/15 border border-white/25 rounded-2xl px-6 py-4 w-full max-w-xs text-left"
+              className="border border-foreground/15 rounded-sm px-6 py-4 w-full max-w-xs text-left bg-white/40"
             >
-              <p className="text-white/60 text-xs font-black uppercase tracking-widest mb-1">Next batch</p>
-              <p className="text-white font-black text-base leading-tight">{batch.nextFilling}</p>
-              <p className="text-white/60 text-sm mt-1">{batch.nextPickupDate}</p>
+              <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-foreground/40 mb-2">Next batch</p>
+              <p className="font-serif font-bold text-foreground text-base leading-snug">{batch.nextFilling}</p>
+              <p className="text-sm text-foreground/50 mt-1">{batch.nextPickupDate}</p>
             </motion.div>
           ) : (
-            <motion.div variants={item}>
-              <span className="inline-block bg-secondary text-white text-sm font-black uppercase tracking-widest px-5 py-2.5 rounded-full">
-                Sold Out
-              </span>
+            <motion.div variants={item} className="border border-secondary/40 rounded-sm px-5 py-3 bg-secondary/5">
+              <p className="text-secondary font-semibold text-sm tracking-wide">Fully booked — follow us for the next drop 🌊</p>
             </motion.div>
           )}
 
-          {/* CTAs */}
           <motion.div variants={item} className="flex flex-col gap-3 w-full max-w-xs">
-            <Button
-              asChild
-              size="lg"
-              className="h-14 text-base rounded-full bg-accent hover:bg-accent/90 text-foreground font-black shadow-lg"
-              data-testid="button-hero-order"
-            >
-              <a href="#order">Order Now</a>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="h-14 text-base rounded-full border-white/40 text-white bg-white/10 hover:bg-white/20 font-bold"
-              data-testid="button-hero-instagram"
-            >
-              <a href="https://instagram.com/marediravioli" target="_blank" rel="noopener noreferrer">
-                Follow on Instagram
-              </a>
-            </Button>
+            <a href="#order"
+              className="w-full text-center py-4 rounded-sm bg-accent text-foreground font-semibold tracking-wide text-sm transition-all hover:opacity-90"
+              data-testid="button-hero-order">
+              Order Now
+            </a>
+            <a href="https://instagram.com/marediravioli" target="_blank" rel="noopener noreferrer"
+              className="w-full text-center py-4 rounded-sm bg-foreground text-[#FDFBF7] font-semibold tracking-wide text-sm transition-all hover:opacity-85"
+              data-testid="button-hero-instagram">
+              @marediravioli on Instagram
+            </a>
           </motion.div>
         </motion.div>
 
-        {/* ── DESKTOP LAYOUT (2-column) ── */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center py-16">
-          {/* Left: copy */}
+        {/* ── DESKTOP 2-column layout ── */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+          {/* Left */}
           <motion.div
-            className="flex flex-col items-start max-w-xl"
-            variants={containerVariants}
+            className="flex flex-col gap-7"
             initial="hidden"
             animate="visible"
+            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
           >
-            <motion.div variants={item} className="mb-5 flex flex-wrap gap-2">
-              <span className="inline-block bg-accent text-foreground text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full">
-                Save the Oceans
-              </span>
-              {batch.isSoldOut ? (
-                <span className="inline-block bg-secondary text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full">
-                  Sold Out
-                </span>
-              ) : (
-                <span className="inline-block bg-white/20 text-white text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full">
-                  Next batch: {batch.nextPickupDate}
-                </span>
-              )}
+            <motion.div variants={item}>
+              <p className="text-xs font-semibold tracking-[0.22em] uppercase text-foreground/40 mb-4">
+                Copenhagen · Ocean Conservation · Handmade Pasta
+              </p>
+              <h1 className="text-[5.5rem] xl:text-[7rem] leading-[0.95] font-bold font-serif text-foreground">
+                Mare<br />di<br />Ravioli
+              </h1>
             </motion.div>
 
-            <motion.h1 variants={item} className="text-7xl xl:text-8xl font-black text-white leading-[1.0] mb-4">
-              Mare di<br />Ravioli
-            </motion.h1>
+            <motion.hr variants={item} className="border-foreground/15 w-24" />
 
-            <motion.p variants={item} className="text-xl text-white/90 mb-2 font-bold">
-              One Raviolo at a Time.
+            <motion.p variants={item} className="text-xl italic font-serif text-foreground/60 max-w-sm leading-relaxed">
+              A volunteer crew, hand-crafting fresh ravioli every week to fund ocean conservation.
             </motion.p>
 
-            <motion.p variants={item} className="text-base text-white/65 mb-6 leading-relaxed max-w-sm">
-              We hand-craft fresh ravioli to fund ocean conservation. Every bite protects the sea.
-            </motion.p>
-
-            {!batch.isSoldOut && (
+            {!batch.isSoldOut ? (
               <motion.div
                 variants={item}
-                className="mb-7 bg-white/10 border border-white/20 rounded-2xl px-5 py-4 w-full max-w-sm"
+                className="border border-foreground/15 rounded-sm px-6 py-5 max-w-sm bg-white/40"
               >
-                <p className="text-white/60 text-xs font-black uppercase tracking-widest mb-1">Next filling</p>
-                <p className="text-white font-black text-lg">{batch.nextFilling}</p>
-                <p className="text-white/60 text-xs mt-1">{batch.nextPickupDate}</p>
+                <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-foreground/40 mb-2">Next batch</p>
+                <p className="font-serif font-bold text-foreground text-lg leading-snug">{batch.nextFilling}</p>
+                <p className="text-sm text-foreground/50 mt-1.5">{batch.nextPickupDate}</p>
+              </motion.div>
+            ) : (
+              <motion.div variants={item} className="border border-secondary/40 rounded-sm px-5 py-4 max-w-sm bg-secondary/5">
+                <p className="text-secondary font-semibold">Fully booked — follow us for the next drop 🌊</p>
               </motion.div>
             )}
 
             <motion.div variants={item} className="flex gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="h-14 px-8 rounded-full bg-accent hover:bg-accent/90 text-foreground font-black shadow-lg hover:scale-[1.03] transition-all"
-                data-testid="button-hero-order-desktop"
-              >
-                <a href="#order">Order Now</a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="h-14 px-8 rounded-full border-white/40 text-white bg-white/10 hover:bg-white/20 font-bold hover:scale-[1.03] transition-all"
-                data-testid="button-hero-instagram-desktop"
-              >
-                <a href="https://instagram.com/marediravioli" target="_blank" rel="noopener noreferrer">
-                  Follow on Instagram
-                </a>
-              </Button>
+              <a href="#order"
+                className="px-8 py-4 rounded-sm bg-accent text-foreground font-semibold tracking-wide text-sm transition-all hover:opacity-90"
+                data-testid="button-hero-order-desktop">
+                Order Now
+              </a>
+              <a href="https://instagram.com/marediravioli" target="_blank" rel="noopener noreferrer"
+                className="px-8 py-4 rounded-sm bg-foreground text-[#FDFBF7] font-semibold tracking-wide text-sm transition-all hover:opacity-85"
+                data-testid="button-hero-instagram-desktop">
+                @marediravioli
+              </a>
             </motion.div>
           </motion.div>
 
-          {/* Right: floating logo */}
+          {/* Right: logo */}
           <div className="flex items-center justify-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.1, delay: 0.3, ease: [0.2, 0.65, 0.3, 0.9] }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
             >
-              <motion.div
-                animate={{ y: [0, -16, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <img
-                  src={logoFull}
-                  alt="Mare di Ravioli — Save the Oceans, One Raviolo at a Time"
-                  className="w-80 xl:w-96 h-80 xl:h-96 object-contain drop-shadow-2xl"
-                />
-              </motion.div>
-              <div className="absolute inset-0 rounded-full bg-accent/20 blur-3xl -z-10 scale-150" />
+              <motion.img
+                src={logoFull}
+                alt="Mare di Ravioli"
+                animate={{ y: [0, -14, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                className="w-[380px] xl:w-[440px] h-[380px] xl:h-[440px] object-contain"
+              />
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Wave divider */}
-      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none">
-        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" className="block w-full h-12 md:h-16 lg:h-20" fill="hsl(var(--background))">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V100H0V80C59.71,100,130.83,98,188.7,82.55,236.2,70.84,278.4,63.76,321.39,56.44Z" />
-        </svg>
-      </div>
+      {/* Bottom rule */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-foreground/8" />
     </section>
   );
 }

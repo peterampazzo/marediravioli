@@ -1,0 +1,25 @@
+Please completely redesign the layout and aesthetic of the entire page. The current version looks too much like a corporate SaaS shop or a commercial e-commerce platform. We want a "Warm Artisanal, Community Zine" aesthetic—cozy, creative, neighborly, and deeply connected to Copenhagen's indie food scene.
+
+Apply these specific stylistic overrides:
+
+1. GLOBAL PALETTE & BACKGROUNDS (Warm & Organic):
+- Get rid of the corporate blue sections and the bright sterile white. 
+- Use a warm, soft cream/paper tone background (#FDFBF7 or #FAF6F0) for the main body to give an artisanal, floured-table feel.
+- Use a deep, rich ocean-ink blue or charcoal-navy solely for typography, borders, and specific grounding elements—never as an aggressive background block.
+
+2. TYPOGRAPHY OVERHAUL (Editorial & Retro):
+- Replace the current sans-serif headers with an elegant, warm, and vintage-inspired Serif font (like 'Playfair Display', 'Lora', or 'Fraunces') to make it look like a high-end food zine or an independent local poster.
+- For body text, use a clean, highly readable, organic sans-serif with good letter-spacing.
+
+3. REMOVE CORPORATE UI ELEMENTS:
+- Remove the icons inside gradient boxes in the "How It Works" section. Instead, present those steps using bold, large typography numbers (e.g., "01", "02", "03") or clean, minimalist text-based lists.
+- Remove heavy drop-shadows and pill-shaped component borders. Embrace a flatter, cleaner design with subtle, crisp borders that feel like print media.
+
+4. LOGO & HEADER REFACTOR (As requested before):
+- Make the "Mare di Ravioli" logo in the navbar significantly larger.
+- Let it elegantly break out and overlap the bottom border of the navbar, bleeding slightly into the hero section for a non-standard, custom brand feel.
+
+5. COMMUNITY-FIRST HERO & GALLERY:
+- Reframe the Hero layout so it looks like a warm invitation to a local gathering rather than a landing page selling a product.
+- Ensure the Instagram button is a solid, grounding color that stands out cleanly without looking like a generic checkout button.
+- Make the gallery layout a beautiful, asymmetric grid of images with raw, simple captions below them, with no modern cards or frames around them.
