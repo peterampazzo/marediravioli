@@ -19,12 +19,12 @@ import {
 import { useToast } from "@/hooks/use-toast";
 
 const orderSchema = z.object({
-  name: z.string().min(2, { message: "Il nome è obbligatorio" }),
-  phone: z.string().min(5, { message: "Il telefono è obbligatorio" }),
-  email: z.string().email({ message: "Email non valida" }),
-  quantity: z.coerce.number().min(1).max(100),
-  pickupDate: z.string().min(1, { message: "Seleziona una data" }),
-  pickupTime: z.string().min(1, { message: "Seleziona un orario" }),
+  name: z.string().min(2, { message: "Full name is required" }),
+  phone: z.string().min(5, { message: "Phone number is required" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  quantity: z.coerce.number().min(1, { message: "Minimum 1" }).max(100, { message: "Maximum 100" }),
+  pickupDate: z.string().min(1, { message: "Please select a pickup date" }),
+  pickupTime: z.string().min(1, { message: "Please select a pickup time" }),
   notes: z.string().optional(),
 });
 
@@ -51,20 +51,17 @@ export default function OrderForm() {
   const onSubmit = async (data: OrderFormValues) => {
     setIsSubmitting(true);
     try {
-      // Formspree mock - replace with actual endpoint
-      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT_URL", {
+      await fetch("YOUR_FORMSPREE_ENDPOINT_URL", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      
-      // Simulate success for UI even if Formspree URL is invalid
       setIsSuccess(true);
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
-        title: "Errore",
-        description: "Si è verificato un errore. Riprova più tardi.",
+        title: "Something went wrong",
+        description: "We couldn't send your order. Please try again later.",
       });
     } finally {
       setIsSubmitting(false);
@@ -77,8 +74,15 @@ export default function OrderForm() {
   };
 
   return (
-    <section id="order" className="py-24 bg-card relative">
-      <div className="container mx-auto px-4 md:px-6 max-w-2xl">
+    <section id="order" className="py-24 bg-primary relative overflow-hidden">
+      {/* Background wave decoration */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <svg className="absolute top-0 w-full" viewBox="0 0 1440 120" fill="white" preserveAspectRatio="none">
+          <path d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,48L1440,43L1440,0L0,0Z"/>
+        </svg>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 max-w-2xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,11 +90,11 @@ export default function OrderForm() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">Fai il Tuo Ordine</h2>
-          <p className="text-muted-foreground text-lg">Prenota i tuoi ravioli freschi fatti a mano.</p>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-3">Place Your Order</h2>
+          <p className="text-white/70 text-lg">Reserve your hand-made fresh ravioli — and help save the ocean.</p>
         </motion.div>
 
-        <div className="bg-background rounded-3xl shadow-xl border border-border/50 overflow-hidden relative min-h-[500px]">
+        <div className="bg-background rounded-3xl shadow-2xl border border-border/30 overflow-hidden relative min-h-[500px]">
           <AnimatePresence mode="wait">
             {!isSuccess ? (
               <motion.div
@@ -109,9 +113,9 @@ export default function OrderForm() {
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground">Nome e Cognome</FormLabel>
+                            <FormLabel className="text-foreground font-bold">Full Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Mario Rossi" {...field} className="bg-card/50" />
+                              <Input placeholder="Jane Smith" {...field} className="bg-card/50" data-testid="input-name" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -122,9 +126,9 @@ export default function OrderForm() {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground">Numero di Telefono</FormLabel>
+                            <FormLabel className="text-foreground font-bold">Phone Number</FormLabel>
                             <FormControl>
-                              <Input placeholder="+39 333 1234567" {...field} className="bg-card/50" />
+                              <Input placeholder="+1 555 123 4567" {...field} className="bg-card/50" data-testid="input-phone" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -138,9 +142,9 @@ export default function OrderForm() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground">Indirizzo Email</FormLabel>
+                            <FormLabel className="text-foreground font-bold">Email Address</FormLabel>
                             <FormControl>
-                              <Input placeholder="mario@esempio.it" {...field} className="bg-card/50" />
+                              <Input placeholder="jane@example.com" {...field} className="bg-card/50" data-testid="input-email" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -151,11 +155,11 @@ export default function OrderForm() {
                         name="quantity"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground">Quantità di Ravioli</FormLabel>
+                            <FormLabel className="text-foreground font-bold">Quantity of Ravioli</FormLabel>
                             <FormControl>
-                              <Input type="number" min="1" max="100" placeholder="es. 50" {...field} className="bg-card/50" />
+                              <Input type="number" min="1" max="100" placeholder="e.g. 50" {...field} className="bg-card/50" data-testid="input-quantity" />
                             </FormControl>
-                            <FormDescription>Ogni porzione = 250g circa</FormDescription>
+                            <FormDescription>Each serving ≈ 250g</FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -168,9 +172,9 @@ export default function OrderForm() {
                         name="pickupDate"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground">Data di Ritiro</FormLabel>
+                            <FormLabel className="text-foreground font-bold">Pickup Date</FormLabel>
                             <FormControl>
-                              <Input type="date" {...field} className="bg-card/50" />
+                              <Input type="date" {...field} className="bg-card/50" data-testid="input-pickup-date" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -181,9 +185,9 @@ export default function OrderForm() {
                         name="pickupTime"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-foreground">Ora di Ritiro</FormLabel>
+                            <FormLabel className="text-foreground font-bold">Pickup Time</FormLabel>
                             <FormControl>
-                              <Input type="time" {...field} className="bg-card/50" />
+                              <Input type="time" {...field} className="bg-card/50" data-testid="input-pickup-time" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -196,12 +200,13 @@ export default function OrderForm() {
                       name="notes"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-foreground">Note Speciali / Allergie</FormLabel>
+                          <FormLabel className="text-foreground font-bold">Special Notes / Allergies</FormLabel>
                           <FormControl>
-                            <Textarea 
-                              placeholder="Es. senza glutine, senza lattosio..." 
-                              className="resize-none bg-card/50 min-h-[100px]" 
-                              {...field} 
+                            <Textarea
+                              placeholder="E.g. gluten-free, dairy-free, extra spicy..."
+                              className="resize-none bg-card/50 min-h-[100px]"
+                              {...field}
+                              data-testid="input-notes"
                             />
                           </FormControl>
                           <FormMessage />
@@ -209,17 +214,17 @@ export default function OrderForm() {
                       )}
                     />
 
-                    <Button 
-                      type="submit" 
-                      size="lg" 
-                      className="w-full text-lg h-14 rounded-xl"
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full text-lg h-14 rounded-2xl font-black bg-primary hover:bg-primary/90"
                       disabled={isSubmitting}
                       data-testid="button-submit-order"
                     >
                       {isSubmitting ? (
-                        <span className="flex items-center gap-2">Inviando...</span>
+                        <span className="flex items-center gap-2">Sending your order...</span>
                       ) : (
-                        <span className="flex items-center gap-2">Invia Ordine <Send size={20} /></span>
+                        <span className="flex items-center gap-2">Send Order <Send size={20} /></span>
                       )}
                     </Button>
                   </form>
@@ -231,24 +236,30 @@ export default function OrderForm() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.5 }}
                 className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
               >
-                <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6"
+                >
                   <CheckCircle className="w-12 h-12 text-primary" />
-                </div>
-                <h3 className="text-3xl font-serif font-bold text-primary mb-4">Grazie per il tuo ordine! 🍝</h3>
-                <p className="text-lg text-muted-foreground mb-8 max-w-md">
-                  Abbiamo ricevuto la tua richiesta. Ti contatteremo presto per confermare i dettagli.
+                </motion.div>
+                <h3 className="text-3xl font-black text-primary mb-4">Thank You!</h3>
+                <p className="text-lg font-semibold text-foreground mb-2">Your order has been received.</p>
+                <p className="text-base text-muted-foreground mb-8 max-w-md">
+                  We'll be in touch soon to confirm the details. Together, we're saving the oceans — one raviolo at a time.
                 </p>
-                <Button 
-                  onClick={resetForm} 
-                  variant="outline" 
+                <Button
+                  onClick={resetForm}
+                  variant="outline"
                   size="lg"
-                  className="rounded-full px-8 border-primary/20 text-primary hover:bg-primary/5"
+                  className="rounded-full px-8 border-primary/30 text-primary hover:bg-primary/5 font-bold"
                   data-testid="button-reset-order"
                 >
-                  Fai un altro ordine
+                  Place another order
                 </Button>
               </motion.div>
             )}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, Instagram, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoIcon from "@assets/logo-icon-transparent.png";
 
 export default function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,26 +16,29 @@ export default function Nav() {
   }, []);
 
   const navLinks = [
-    { label: "Chi Siamo", href: "#about" },
-    { label: "Galleria", href: "#gallery" },
-    { label: "Ordina", href: "#order" },
+    { label: "About Us", href: "#about" },
+    { label: "Gallery", href: "#gallery" },
+    { label: "Order", href: "#order" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-sm shadow-sm py-4"
-          : "bg-transparent py-6"
+          ? "bg-background/95 backdrop-blur-sm shadow-sm py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <a
           href="#"
-          className="text-2xl font-serif font-bold text-primary tracking-tight"
+          className="flex items-center gap-2"
           data-testid="link-logo"
         >
-          Mare di Ravioli
+          <img src={logoIcon} alt="Mare di Ravioli logo" className="h-10 w-10 object-contain" />
+          <span className="text-xl font-black text-primary tracking-tight leading-none hidden sm:block">
+            Mare di Ravioli
+          </span>
         </a>
 
         {/* Desktop Nav */}
@@ -43,7 +47,7 @@ export default function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="text-sm font-bold text-foreground hover:text-primary transition-colors uppercase tracking-wide"
               data-testid={`link-nav-${link.label.toLowerCase().replace(' ', '-')}`}
             >
               {link.label}
@@ -79,7 +83,7 @@ export default function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-lg font-medium text-foreground hover:text-primary py-2 border-b border-border/50"
+              className="text-lg font-bold text-foreground hover:text-primary py-2 border-b border-border/50 uppercase tracking-wide"
               onClick={() => setIsMobileMenuOpen(false)}
               data-testid={`link-mobile-nav-${link.label.toLowerCase().replace(' ', '-')}`}
             >
@@ -90,7 +94,7 @@ export default function Nav() {
             href="https://instagram.com/marediravioli"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-lg font-medium text-foreground hover:text-primary py-2"
+            className="flex items-center gap-2 text-lg font-bold text-foreground hover:text-primary py-2"
             onClick={() => setIsMobileMenuOpen(false)}
             data-testid="link-mobile-nav-instagram"
           >
