@@ -8,98 +8,125 @@ export default function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { label: "About Us", href: "#about" },
-    { label: "Gallery", href: "#gallery" },
-    { label: "Order", href: "#order" },
-  ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-sm shadow-sm py-3"
+          ? "bg-background/95 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-5"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <a
-          href="#"
-          className="flex items-center gap-2"
-          data-testid="link-logo"
-        >
-          <img src={logoIcon} alt="Mare di Ravioli logo" className="h-10 w-10 object-contain" />
-          <span className="text-xl font-black text-primary tracking-tight leading-none hidden sm:block">
-            Mare di Ravioli
-          </span>
-        </a>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Desktop: 3-column centered layout */}
+        <div className="hidden md:grid md:grid-cols-3 items-center">
+          {/* Left links */}
+          <nav className="flex items-center gap-8 justify-start">
             <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-bold text-foreground hover:text-primary transition-colors uppercase tracking-wide"
-              data-testid={`link-nav-${link.label.toLowerCase().replace(' ', '-')}`}
+              href="#about"
+              className="text-sm font-black text-foreground hover:text-primary transition-colors uppercase tracking-wider"
+              data-testid="link-nav-about"
             >
-              {link.label}
+              About Us
             </a>
-          ))}
+            <a
+              href="#gallery"
+              className="text-sm font-black text-foreground hover:text-primary transition-colors uppercase tracking-wider"
+              data-testid="link-nav-gallery"
+            >
+              Gallery
+            </a>
+          </nav>
+
+          {/* Center logo */}
+          <div className="flex justify-center">
+            <a href="#" className="flex flex-col items-center gap-1 group" data-testid="link-logo">
+              <img
+                src={logoIcon}
+                alt="Mare di Ravioli"
+                className="h-12 w-12 object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+              <span
+                className={`text-xs font-black tracking-widest uppercase leading-none transition-colors ${
+                  isScrolled ? "text-primary" : "text-white"
+                }`}
+              >
+                Mare di Ravioli
+              </span>
+            </a>
+          </div>
+
+          {/* Right links */}
+          <nav className="flex items-center gap-8 justify-end">
+            <a
+              href="#order"
+              className="text-sm font-black text-foreground hover:text-primary transition-colors uppercase tracking-wider"
+              data-testid="link-nav-order"
+            >
+              Order Now
+            </a>
+            <a
+              href="https://instagram.com/marediravioli"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:text-primary transition-colors"
+              data-testid="link-nav-instagram"
+            >
+              <Instagram size={20} />
+            </a>
+          </nav>
+        </div>
+
+        {/* Mobile: logo centered, hamburger on left, instagram on right */}
+        <div className="flex md:hidden items-center justify-between">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            data-testid="button-mobile-menu-toggle"
+          >
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </Button>
+
+          <a href="#" className="flex items-center gap-2" data-testid="link-logo-mobile">
+            <img src={logoIcon} alt="Mare di Ravioli" className="h-9 w-9 object-contain" />
+            <span className="text-base font-black text-primary">Mare di Ravioli</span>
+          </a>
+
           <a
             href="https://instagram.com/marediravioli"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground hover:text-primary transition-colors"
-            data-testid="link-nav-instagram"
+            className="text-foreground hover:text-primary transition-colors p-2"
+            data-testid="link-mobile-instagram"
           >
             <Instagram size={20} />
           </a>
-        </nav>
-
-        {/* Mobile Toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          data-testid="button-mobile-menu-toggle"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </Button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile dropdown menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg py-4 px-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border shadow-lg py-4 px-6 flex flex-col gap-1">
+          {[
+            { label: "About Us", href: "#about" },
+            { label: "Gallery", href: "#gallery" },
+            { label: "How It Works", href: "#how-it-works" },
+            { label: "Order Now", href: "#order" },
+          ].map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-lg font-bold text-foreground hover:text-primary py-2 border-b border-border/50 uppercase tracking-wide"
+              className="text-base font-black text-foreground hover:text-primary py-3 border-b border-border/40 uppercase tracking-wide"
               onClick={() => setIsMobileMenuOpen(false)}
-              data-testid={`link-mobile-nav-${link.label.toLowerCase().replace(' ', '-')}`}
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="https://instagram.com/marediravioli"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-lg font-bold text-foreground hover:text-primary py-2"
-            onClick={() => setIsMobileMenuOpen(false)}
-            data-testid="link-mobile-nav-instagram"
-          >
-            <Instagram size={20} /> Instagram
-          </a>
         </div>
       )}
     </header>

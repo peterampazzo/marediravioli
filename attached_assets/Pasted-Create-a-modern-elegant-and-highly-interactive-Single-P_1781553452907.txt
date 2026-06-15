@@ -1,0 +1,44 @@
+Create a modern, elegant, and highly interactive Single Page Application (SPA) using Next.js (App Router), Tailwind CSS, and Framer Motion for animations. 
+
+The website is for a charity/volunteer initiative based in Copenhagen called "Mare di Ravioli". The goal of the site is to introduce the project, share its warm community vibe, and allow locals to place orders easily via an email-based form without needing an Instagram account.
+
+CRITICAL INSPIRATION SOURCE & VISUALS:
+- Please analyze and draw inspiration from their official Instagram account for the visual identity, tone, and aesthetics: https://instagram.com/marediravioli 
+- Replicate and reuse the exact color patterns, themes, and visual signature found on their Instagram profile. Extract the core color tokens (e.g., specific blues, creams, or warm tones used in their graphics/branding) and implement them consistently across the website using Tailwind CSS.
+- Include beautifully styled image placeholders throughout the sections (e.g., in the Hero, About Us, and a dedicated gallery showcase). Use high-quality food/cooking placeholder URLs (like Unsplash) or clean placeholder components so I can easily swap them out with actual photos of our ravioli later. Apply hover zoom effects and smooth fade-in animations to these placeholders.
+
+NAVBAR & LOGO DESIGN:
+- Create a sticky, premium Navigation Bar with a centered logo layout.
+- Place the "Mare di Ravioli" logo (or brand text) perfectly centered in the navigation bar.
+- On desktop viewports, split the navigation links evenly to the left and right of the centered logo (e.g., "About Us" on the left, "Order Now" on the right) to create perfect, elegant symmetry.
+- On mobile viewports, keep the logo prominently centered, with a clean menu icon or Instagram link icon balanced neatly on the side.
+- Use a soft contrast background (like a warm translucent cream with a backdrop blur effect) so the centered logo stands out beautifully against the page content as the user scrolls.
+
+DYNAMIC "NEXT BATCH / DROP" LOGIC:
+- Instead of a general open calendar for pickup dates, create a central configuration object (or state variables) at the top of the main page component for the current event details:
+  - `nextPickupDate` (e.g., "Saturday, June 20th")
+  - `nextFilling` (e.g., "Ricotta, Lemon & Fresh Spinach")
+  - `isSoldOut` (boolean: true/false)
+- The Hero section and the Order section must dynamically show this specific next date and filling based on those variables.
+- If `isSoldOut` is set to true, use Framer Motion to smoothly hide the order form and display a warm, friendly message: "Wow, Copenhagen! We are fully booked for this batch. Follow our Instagram to catch the next ravioli wave! 🌊"
+
+PAGE STRUCTURE (Single Page Sections):
+1. Hero Section: Title ("Mare di Ravioli"), a warm subtitle explaining the volunteer mission and displaying the next batch date/filling, a main call-to-action button ("Order Now") that smooth-scrolls to the form, a secondary button linking to Instagram (@marediravioli), and a beautiful side image placeholder.
+2. About Us Section: A staggered split layout combining friendly text blocks about the charity mission with local image placeholders showing the "behind the scenes" making of the ravioli. Blend the warmth of Italian homemade pasta with Copenhagen's clean, minimalist, cozy aesthetics.
+3. How It Works / Product Info Section: A playful, friendly micro-section explaining how it works:
+   - "Handmade with love in Copenhagen 🇩🇰"
+   - "Freshly prepared & floured: picked up fresh, cooked at home by you in just 3 minutes! Best enjoyed immediately."
+4. Gallery / Menu Showcase Section: A grid of 3-4 image placeholders with captions to show different types of past ravioli creations or community events, utilizing smooth hover micro-interactions.
+5. Order Form Section: A clean, user-friendly form container. 
+   Fields needed:
+   - Full Name
+   - Phone Number
+   - Email Address
+   - Quantity of Ravioli (styled number input or custom dropdown)
+   - Special Notes / Allergies
+6. Footer: Simple footer with volunteer info.
+
+FORM LOGIC:
+- DO NOT use WhatsApp. Configure the HTML form to submit data via a standard POST request to an external form endpoint (like Formspree or Formcarry).
+- Implement a smooth Framer Motion success state: when the form is submitted successfully, replace the form container with a beautiful, animated "Thank you! We received your order" message without reloading the page.
+- Leave a clear placeholder/variable in the form action attribute (e.g., "YOUR_FORMSPREE_ENDPOINT_URL") so I can easily paste my form endpoint link later.
