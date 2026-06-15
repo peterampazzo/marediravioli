@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Mare di Ravioli"
+version = "1.0.0"
+id = "artifacts/mare-di-ravioli"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24990
+
+[services.development]
+run = "pnpm --filter @workspace/mare-di-ravioli run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mare-di-ravioli", "run", "build" ]
+publicDir = "artifacts/mare-di-ravioli/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24990"
+BASE_PATH = "/"
