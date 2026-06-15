@@ -45,7 +45,7 @@ export default function Nav() {
               backgroundImage: `url(${logoIcon})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center 50%",
-              backgroundSize: "158%",
+              backgroundSize: "120%",
               borderRadius: "0 0 999px 999px",
               boxShadow: "0 8px 24px rgba(29,78,137,0.3)",
             }}
@@ -86,7 +86,7 @@ export default function Nav() {
               backgroundImage: `url(${logoIcon})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center 50%",
-              backgroundSize: "158%",
+              backgroundSize: "120%",
               borderRadius: "0 0 999px 999px",
               boxShadow: "0 4px 14px rgba(29,78,137,0.22)",
             }}
