@@ -8,7 +8,11 @@ interface HeroProps {
 export default function Hero({ batch }: HeroProps) {
   const item = {
     hidden: { opacity: 0, y: 18 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] as const },
+    },
   };
 
   return (

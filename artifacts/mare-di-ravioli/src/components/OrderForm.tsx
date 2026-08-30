@@ -21,6 +21,8 @@ interface OrderFormProps {
   batch: BatchConfig;
 }
 
+const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+
 export default function OrderForm({ batch }: OrderFormProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,8 +35,19 @@ export default function OrderForm({ batch }: OrderFormProps) {
 
   const onSubmit = async (data: SignupValues) => {
     setIsSubmitting(true);
+
+    if (!formEndpoint) {
+      toast({
+        variant: "destructive",
+        title: "Form not configured",
+        description: "Add VITE_FORMSPREE_ENDPOINT to enable pickup reservations.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      await fetch("YOUR_FORMSPREE_ENDPOINT_URL", {
+      await fetch(formEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, batch: batch.nextPickupDate, filling: batch.nextFilling }),
