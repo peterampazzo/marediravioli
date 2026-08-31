@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="15" fill="#1D4E89"/>
+  <circle cx="32" cy="31" r="22" fill="#FDFBF7"/>
+  <path d="M10 44c8-5 14-5 22 0s14 5 22 0v11H10Z" fill="#2788C4"/>
+  <text x="32" y="38" fill="#1D4E89" font-family="Arial, sans-serif" font-size="22" font-weight="800" text-anchor="middle">MR</text>
+</svg>
