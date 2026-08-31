@@ -49,15 +49,21 @@ function Home({ batch, tallyFormUrl, previewControls }: HomeProps) {
       id="top"
       className="flex flex-col min-h-[100dvh] w-full bg-background font-sans text-foreground"
     >
+      <a
+        href="#main-content"
+        className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-[#F4C542] px-5 py-3 font-bold text-foreground shadow-lg transition-transform focus:translate-y-0"
+      >
+        Skip to main content
+      </a>
       <Nav />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <Hero batch={batch} />
         <WhatWeDo />
         <About />
         <HowItWorks />
         <OrderForm batch={batch} tallyFormUrl={tallyFormUrl} />
       </main>
-      <Footer />
+      <Footer reservePreviewSpace={Boolean(previewControls)} />
       {previewControls}
     </div>
   );

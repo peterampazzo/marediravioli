@@ -7,7 +7,7 @@ const steps = [
     title: "Request a Spot",
     body: "Send a short request and tell us how many servings you'd like. We confirm availability by email.",
     color: "bg-[#EEF3FA] border-[#1D4E89]/12",
-    numColor: "text-[#1D4E89]/20",
+    numColor: "text-[#1D4E89]/65",
   },
   {
     n: "02",
@@ -15,7 +15,7 @@ const steps = [
     title: "We Prepare the Batch",
     body: "Our volunteer crew gathers to roll, fill, and seal each raviolo by hand.",
     color: "bg-[#FFF8E7] border-[#F4C542]/30",
-    numColor: "text-[#F4C542]/60",
+    numColor: "text-[#806000]",
   },
   {
     n: "03",
@@ -23,7 +23,7 @@ const steps = [
     title: "Pick Up in Copenhagen",
     body: "Collect your batch in person at our Copenhagen pickup location. Say hi!",
     color: "bg-[#EBF5F1] border-[#A7D7C5]/40",
-    numColor: "text-[#A7D7C5]/70",
+    numColor: "text-[#2F765C]",
   },
   {
     n: "04",
@@ -31,7 +31,7 @@ const steps = [
     title: "Your Contribution Helps the Ocean",
     body: "100% of proceeds support ocean conservation projects.",
     color: "bg-[#FEF0F0] border-[#F28C8C]/30",
-    numColor: "text-[#F28C8C]/60",
+    numColor: "text-[#A83F3F]",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function HowItWorks() {
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2">
             How It Works
           </h2>
-          <p className="text-foreground/60 text-base max-w-lg mx-auto">
+          <p className="text-foreground/75 text-base max-w-lg mx-auto">
             Four simple steps from request to pickup.
           </p>
         </motion.div>
@@ -75,10 +75,10 @@ export default function HowItWorks() {
                 <span className="text-3xl">{step.emoji}</span>
               </div>
               {/* Text stacked below */}
-              <h3 className="font-bold text-base text-primary mb-1 leading-snug">
+              <h3 className="font-bold text-lg text-primary mb-1 leading-snug">
                 {step.title}
               </h3>
-              <p className="text-sm text-foreground/60 leading-relaxed">
+              <p className="text-base text-foreground/75 leading-relaxed">
                 {step.body}
               </p>
             </motion.div>

@@ -44,7 +44,7 @@ export default function OrderForm({
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2">
             Next Community Pickup
           </h2>
-          <p className="text-foreground/65 text-sm max-w-md mx-auto">
+          <p className="text-foreground/75 text-base max-w-md mx-auto">
             Request a spot for an upcoming batch and pick it up in Copenhagen
             after we confirm by email.
           </p>
@@ -67,7 +67,7 @@ export default function OrderForm({
                 <h3 className="font-bold text-xl text-primary mb-2">
                   This Batch Is Fully Requested
                 </h3>
-                <p className="text-foreground/65 mb-6 text-sm leading-relaxed">
+                <p className="text-foreground/75 mb-6 text-base leading-relaxed">
                   All available spots have been requested. Follow our community
                   to hear about the next batch.
                 </p>
@@ -88,7 +88,7 @@ export default function OrderForm({
                 <h3 className="font-bold text-xl text-primary mb-2">
                   The Next Batch Is Being Planned
                 </h3>
-                <p className="text-foreground/65 mb-6 text-sm leading-relaxed">
+                <p className="text-foreground/75 mb-6 text-base leading-relaxed">
                   We’ll share the next Copenhagen pickup date and filling as
                   soon as they’re confirmed.
                 </p>
@@ -109,7 +109,7 @@ export default function OrderForm({
                 <h3 className="font-bold text-xl text-primary mb-2">
                   Online Requests Aren’t Open Yet
                 </h3>
-                <p className="text-foreground/65 mb-6 text-sm leading-relaxed">
+                <p className="text-foreground/75 mb-6 text-base leading-relaxed">
                   The pickup is being prepared for online requests. Follow our
                   community for the opening announcement.
                 </p>
@@ -131,7 +131,7 @@ export default function OrderForm({
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="text-[10px] font-bold tracking-widest uppercase text-white/65 leading-none mb-0.5">
+                      <p className="text-xs font-bold tracking-widest uppercase text-white/80 leading-none mb-1">
                         Date
                       </p>
                       <p className="font-bold text-white text-sm">
@@ -146,7 +146,7 @@ export default function OrderForm({
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="text-[10px] font-bold tracking-widest uppercase text-white/65 leading-none mb-0.5">
+                      <p className="text-xs font-bold tracking-widest uppercase text-white/80 leading-none mb-1">
                         Location
                       </p>
                       <p className="font-bold text-white text-sm">
@@ -161,7 +161,7 @@ export default function OrderForm({
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="text-[10px] font-bold tracking-widest uppercase text-white/65 leading-none mb-0.5">
+                      <p className="text-xs font-bold tracking-widest uppercase text-white/80 leading-none mb-1">
                         Batch
                       </p>
                       <p className="font-bold text-white text-sm leading-tight">
@@ -184,7 +184,7 @@ export default function OrderForm({
                   />
                 </div>
 
-                <p className="px-3 text-center text-xs leading-relaxed text-foreground/60">
+                <p className="px-3 text-center text-sm leading-relaxed text-foreground/75">
                   Pickup only in Copenhagen. We use your details only to manage
                   this pickup and contact you about your request. The form is
                   securely processed by Tally in Europe.

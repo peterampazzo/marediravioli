@@ -1,11 +1,20 @@
 import { Instagram, Heart } from "lucide-react";
 import logoFull from "@assets/logo-full-white-transparent.png";
 import FacebookIcon from "@/components/icons/FacebookIcon";
+import { BRAND_SLOGAN } from "@/config/brand";
 import { SOCIAL_LINKS } from "@/config/social";
 
-export default function Footer() {
+interface FooterProps {
+  reservePreviewSpace?: boolean;
+}
+
+export default function Footer({ reservePreviewSpace = false }: FooterProps) {
   return (
-    <footer className="relative mt-16 bg-[#1D4E89] pb-12 pt-8">
+    <footer
+      className={`relative mt-16 bg-[#1D4E89] pt-8 ${
+        reservePreviewSpace ? "pb-28 sm:pb-12" : "pb-12"
+      }`}
+    >
       <div
         className="absolute inset-x-0 -top-16 h-16 overflow-hidden bg-card text-[#1D4E89]"
         aria-hidden="true"
@@ -34,7 +43,9 @@ export default function Footer() {
             />
           </div>
 
-          <p className="text-sm text-white/60">
+          <p className="text-base font-bold text-white">{BRAND_SLOGAN}</p>
+
+          <p className="text-sm text-white/75 -mt-2">
             A Copenhagen community initiative 🌊
           </p>
 
@@ -48,7 +59,7 @@ export default function Footer() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-white/60 hover:text-white font-semibold transition-colors"
+                className="inline-flex min-h-11 items-center px-1 text-white/75 hover:text-white font-semibold transition-colors"
               >
                 {l.label}
               </a>
@@ -60,7 +71,7 @@ export default function Footer() {
               href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white/15 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/25"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/15 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/25"
               data-testid="link-footer-instagram"
             >
               <Instagram size={17} aria-hidden="true" /> Instagram
@@ -69,7 +80,7 @@ export default function Footer() {
               href={SOCIAL_LINKS.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white/15 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-white/25"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/15 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/25"
               data-testid="link-footer-facebook"
             >
               <FacebookIcon className="size-[17px]" aria-hidden="true" />{" "}
@@ -79,7 +90,7 @@ export default function Footer() {
 
           <div className="w-full max-w-xs h-px bg-white/10 mt-2" />
 
-          <p className="text-white/30 text-xs flex items-center gap-1.5">
+          <p className="text-white/75 text-xs flex items-center gap-1.5">
             Made with{" "}
             <Heart
               size={11}

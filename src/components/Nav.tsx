@@ -30,7 +30,7 @@ export default function Nav() {
   }, [isMobileMenuOpen]);
 
   const linkClass =
-    "text-sm font-semibold text-foreground/70 hover:text-primary transition-colors whitespace-nowrap";
+    "inline-flex min-h-11 items-center text-sm font-semibold text-foreground/80 hover:text-primary transition-colors whitespace-nowrap";
 
   return (
     <header
@@ -112,7 +112,7 @@ export default function Nav() {
           ref={menuButtonRef}
           type="button"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-1.5 text-foreground/60 hover:text-foreground z-10"
+          className="inline-flex size-11 items-center justify-center text-foreground/80 hover:text-foreground z-10"
           data-testid="button-mobile-menu-toggle"
           aria-label={
             isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
@@ -149,12 +149,12 @@ export default function Nav() {
           />
         </div>
 
-        <div className="ml-auto flex items-center gap-0.5 z-10">
+        <div className="ml-auto flex items-center z-10">
           <a
             href={SOCIAL_LINKS.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 text-foreground/60 hover:text-foreground"
+            className="inline-flex size-11 items-center justify-center text-foreground/80 hover:text-foreground"
             data-testid="link-mobile-facebook"
             aria-label="Follow Mare di Ravioli on Facebook"
           >
@@ -164,7 +164,7 @@ export default function Nav() {
             href={SOCIAL_LINKS.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 text-foreground/60 hover:text-foreground"
+            className="inline-flex size-11 items-center justify-center text-foreground/80 hover:text-foreground"
             data-testid="link-mobile-instagram"
             aria-label="Follow Mare di Ravioli on Instagram"
           >
@@ -192,7 +192,7 @@ export default function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-base font-semibold text-foreground/70 hover:text-primary py-3.5 border-b border-border/40 last:border-0"
+                className="text-base font-semibold text-foreground/80 hover:text-primary py-3.5 border-b border-border/40 last:border-0"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}

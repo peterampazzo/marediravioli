@@ -2,6 +2,8 @@
 
 Community website for Mare di Ravioli in Copenhagen.
 
+**Save the oceans, one raviolo at a time.**
+
 ## Local development
 
 ```sh

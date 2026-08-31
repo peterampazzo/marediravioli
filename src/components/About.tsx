@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { BRAND_SLOGAN } from "@/config/brand";
 
 export default function About() {
   return (
@@ -39,12 +40,12 @@ export default function About() {
               <h2 className="text-3xl md:text-4xl font-bold text-primary leading-snug">
                 How It All Started
               </h2>
-              <p className="text-foreground/65 leading-relaxed">
+              <p className="text-foreground/75 leading-relaxed">
                 Mare di Ravioli began as a simple idea: bring people together
                 around a shared table, make something delicious by hand, and
                 give back to the ocean we love.
               </p>
-              <p className="text-foreground/65 leading-relaxed">
+              <p className="text-foreground/75 leading-relaxed">
                 What started as a small gathering in Copenhagen has grown into a
                 regular community event, connecting locals who care about good
                 food <em>and</em> a healthier planet. Every batch is rolled by
@@ -82,6 +83,7 @@ export default function About() {
               <h2 className="text-3xl md:text-4xl font-bold text-white leading-snug">
                 Ravioli for the Ocean
               </h2>
+              <p className="text-lg font-bold text-[#F4C542]">{BRAND_SLOGAN}</p>
               <p className="text-white/75 leading-relaxed">
                 The connection between ravioli and ocean conservation might seem
                 unexpected — but it makes perfect sense to us. Food brings

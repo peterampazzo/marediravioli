@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 import { formatPickupDate, getEffectiveBatchStatus } from "@/config/batch";
+import { BRAND_SLOGAN } from "@/config/brand";
 import { SOCIAL_LINKS } from "@/config/social";
 import type { BatchConfig } from "@/types/batch";
 
@@ -45,16 +46,14 @@ export default function Hero({ batch }: HeroProps) {
 
             <motion.h1
               variants={item}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary leading-tight"
+              className="text-4xl sm:text-5xl font-bold text-primary leading-tight"
             >
-              Good Food,
-              <br />
-              Cleaner Seas.
+              {BRAND_SLOGAN}
             </motion.h1>
 
             <motion.p
               variants={item}
-              className="text-base md:text-lg text-foreground/65 leading-relaxed max-w-lg"
+              className="text-base md:text-lg text-foreground/75 leading-relaxed max-w-lg"
             >
               Mare di Ravioli is a Copenhagen community project where people
               come together around handmade ravioli while supporting ocean
@@ -67,13 +66,13 @@ export default function Hero({ batch }: HeroProps) {
                 variants={item}
                 className="w-full max-w-sm bg-white border border-[#A7D7C5]/50 rounded-2xl px-5 py-4 text-left shadow-sm"
               >
-                <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#1D4E89]/50 mb-2">
+                <p className="text-xs font-bold tracking-[0.16em] uppercase text-[#1D4E89] mb-2">
                   🗓 Upcoming Community Batch
                 </p>
                 <p className="font-bold text-primary text-base leading-snug">
                   {batch.filling}
                 </p>
-                <p className="text-sm text-foreground/55 mt-0.5">
+                <p className="text-base text-foreground/75 mt-0.5">
                   Pickup in {batch.location} · {pickupDate}
                 </p>
               </motion.div>
@@ -85,7 +84,7 @@ export default function Hero({ batch }: HeroProps) {
                 <p className="font-bold text-[#9f4039]">
                   This batch is fully requested.
                 </p>
-                <p className="text-sm text-[#9f4039]/75 mt-1">
+                <p className="text-base text-[#8A342F] mt-1">
                   Follow our community to hear about the next Copenhagen pickup.
                 </p>
               </motion.div>
@@ -94,13 +93,13 @@ export default function Hero({ batch }: HeroProps) {
                 variants={item}
                 className="w-full max-w-sm bg-[#EBF5F1] border border-[#A7D7C5]/60 rounded-2xl px-5 py-4 text-left"
               >
-                <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#1D4E89]/50 mb-2">
+                <p className="text-xs font-bold tracking-[0.16em] uppercase text-[#1D4E89] mb-2">
                   Next Community Batch
                 </p>
                 <p className="font-bold text-primary">
                   We’re planning the next Copenhagen pickup.
                 </p>
-                <p className="text-sm text-foreground/55 mt-1">
+                <p className="text-base text-foreground/75 mt-1">
                   Follow along and we’ll share the date and filling when they’re
                   ready.
                 </p>

@@ -45,7 +45,7 @@ export default function WhatWeDo() {
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2">
             What We Do
           </h2>
-          <p className="text-foreground/60 text-base max-w-xl mx-auto">
+          <p className="text-foreground/75 text-base max-w-xl mx-auto">
             Four simple things that make us who we are.
           </p>
         </motion.div>
@@ -64,7 +64,7 @@ export default function WhatWeDo() {
               <h3 className="font-bold text-lg text-primary leading-tight">
                 {f.title}
               </h3>
-              <p className="text-sm text-foreground/60 leading-relaxed">
+              <p className="text-base text-foreground/75 leading-relaxed">
                 {f.desc}
               </p>
             </motion.div>
