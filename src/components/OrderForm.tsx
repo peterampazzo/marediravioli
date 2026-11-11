@@ -1,6 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Calendar, Instagram, MapPin, Utensils } from "lucide-react";
-import { formatPickupDate, getEffectiveBatchStatus } from "@/config/batch";
+import { Calendar, Instagram, MapPin, Tag, Utensils } from "lucide-react";
+import {
+  formatPickupDate,
+  formatPrice,
+  getEffectiveBatchStatus,
+} from "@/config/batch";
 import { buildTallyEmbedUrl } from "@/config/tally";
 import { SOCIAL_LINKS } from "@/config/social";
 import type { BatchConfig } from "@/types/batch";
@@ -18,6 +22,7 @@ export default function OrderForm({
 }: OrderFormProps) {
   const batchStatus = getEffectiveBatchStatus(batch);
   const pickupDate = formatPickupDate(batch);
+  const price = formatPrice(batch);
   const tallyEmbedUrl = buildTallyEmbedUrl(batch, tallyFormUrl);
 
   const followCommunityLink = (
@@ -27,7 +32,7 @@ export default function OrderForm({
       rel="noopener noreferrer"
       className="inline-flex items-center justify-center gap-2 bg-[#1D4E89] text-white font-bold px-6 py-3 rounded-full text-sm hover:bg-[#163d6e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#1D4E89] transition-colors"
     >
-      <Instagram size={15} aria-hidden="true" /> Follow Our Community
+      <Instagram size={15} aria-hidden="true" /> Follow on Instagram
     </a>
   );
 
@@ -42,11 +47,11 @@ export default function OrderForm({
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2">
-            Next Community Pickup
+            Next ravioli
           </h2>
           <p className="text-foreground/75 text-base max-w-md mx-auto">
-            Request a spot for an upcoming batch and pick it up in Copenhagen
-            after we confirm by email.
+            Order a portion for the next date and pick it up in Østerbro. We
+            confirm by email.
           </p>
         </motion.div>
 
@@ -65,11 +70,11 @@ export default function OrderForm({
                   🌊
                 </p>
                 <h3 className="font-bold text-xl text-primary mb-2">
-                  This Batch Is Fully Requested
+                  This batch is sold out
                 </h3>
                 <p className="text-foreground/75 mb-6 text-base leading-relaxed">
-                  All available spots have been requested. Follow our community
-                  to hear about the next batch.
+                  All portions are taken. Follow us on Instagram for the next
+                  date.
                 </p>
                 {followCommunityLink}
               </motion.div>
@@ -86,11 +91,11 @@ export default function OrderForm({
                   🍝
                 </p>
                 <h3 className="font-bold text-xl text-primary mb-2">
-                  The Next Batch Is Being Planned
+                  The next date is being planned
                 </h3>
                 <p className="text-foreground/75 mb-6 text-base leading-relaxed">
-                  We’ll share the next Copenhagen pickup date and filling as
-                  soon as they’re confirmed.
+                  We announce the date and the filling on Instagram first, then
+                  open orders here.
                 </p>
                 {followCommunityLink}
               </motion.div>
@@ -107,11 +112,11 @@ export default function OrderForm({
                   📬
                 </p>
                 <h3 className="font-bold text-xl text-primary mb-2">
-                  Online Requests Aren’t Open Yet
+                  Orders are not open yet
                 </h3>
                 <p className="text-foreground/75 mb-6 text-base leading-relaxed">
-                  The pickup is being prepared for online requests. Follow our
-                  community for the opening announcement.
+                  We are getting the order form ready. Follow us on Instagram
+                  for the opening.
                 </p>
                 {followCommunityLink}
               </motion.div>
@@ -147,7 +152,7 @@ export default function OrderForm({
                     />
                     <div>
                       <p className="text-xs font-bold tracking-widest uppercase text-white/80 leading-none mb-1">
-                        Location
+                        Pick up
                       </p>
                       <p className="font-bold text-white text-sm">
                         {batch.location}
@@ -162,19 +167,39 @@ export default function OrderForm({
                     />
                     <div>
                       <p className="text-xs font-bold tracking-widest uppercase text-white/80 leading-none mb-1">
-                        Batch
+                        Filling
                       </p>
                       <p className="font-bold text-white text-sm leading-tight">
                         {batch.filling}
                       </p>
                     </div>
                   </div>
+                  {price ? (
+                    <div className="flex items-center gap-3 sm:flex-1 sm:px-4">
+                      <Tag
+                        size={16}
+                        className="shrink-0 text-white/70"
+                        aria-hidden="true"
+                      />
+                      <div>
+                        <p className="text-xs font-bold tracking-widest uppercase text-white/80 leading-none mb-1">
+                          Price
+                        </p>
+                        <p
+                          className="font-bold text-white text-sm leading-tight"
+                          data-testid="batch-price"
+                        >
+                          {price}
+                        </p>
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
 
                 <div className="overflow-hidden rounded-2xl border border-border bg-white p-2 shadow-sm sm:p-4">
                   <iframe
                     src={tallyEmbedUrl}
-                    title="Request a Mare di Ravioli pickup spot"
+                    title="Order Mare di Ravioli"
                     loading="lazy"
                     width="100%"
                     height="760"
@@ -185,9 +210,9 @@ export default function OrderForm({
                 </div>
 
                 <p className="px-3 text-center text-sm leading-relaxed text-foreground/75">
-                  Pickup only in Copenhagen. We use your details only to manage
-                  this pickup and contact you about your request. The form is
-                  securely processed by Tally in Europe.
+                  Pick up in Østerbro only. We use your details to manage this
+                  batch and to contact you about your order, nothing else. The
+                  form runs on Tally, hosted in Europe.
                 </p>
               </motion.div>
             )}

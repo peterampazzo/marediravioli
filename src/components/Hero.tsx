@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
-import { formatPickupDate, getEffectiveBatchStatus } from "@/config/batch";
+import {
+  formatPickupDate,
+  formatPrice,
+  getEffectiveBatchStatus,
+} from "@/config/batch";
 import { BRAND_SLOGAN } from "@/config/brand";
+import { PARTNER } from "@/config/impact";
 import { SOCIAL_LINKS } from "@/config/social";
 import type { BatchConfig } from "@/types/batch";
 
@@ -13,6 +18,7 @@ export default function Hero({ batch }: HeroProps) {
   const batchStatus = getEffectiveBatchStatus(batch);
   const isOpen = batchStatus === "open";
   const pickupDate = formatPickupDate(batch);
+  const price = formatPrice(batch);
 
   const item = {
     hidden: { opacity: 0, y: 18 },
@@ -40,7 +46,7 @@ export default function Hero({ batch }: HeroProps) {
           >
             <motion.div variants={item}>
               <span className="inline-block bg-[#A7D7C5]/40 text-[#1D4E89] text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full">
-                Copenhagen Community Initiative 🌊
+                Homemade ravioli from Copenhagen 🌊
               </span>
             </motion.div>
 
@@ -55,9 +61,9 @@ export default function Hero({ batch }: HeroProps) {
               variants={item}
               className="text-base md:text-lg text-foreground/75 leading-relaxed max-w-lg"
             >
-              Mare di Ravioli is a Copenhagen community project where people
-              come together around handmade ravioli while supporting ocean
-              conservation and local environmental initiatives.
+              Mare di Ravioli is a small non-profit in Copenhagen. We make
+              Italian ravioli by hand a few times a year, you pre-order and pick
+              them up in Østerbro, and all the profits go to {PARTNER.name}.
             </motion.p>
 
             {/* Upcoming pickup badge */}
@@ -67,14 +73,17 @@ export default function Hero({ batch }: HeroProps) {
                 className="w-full max-w-sm bg-white border border-[#A7D7C5]/50 rounded-2xl px-5 py-4 text-left shadow-sm"
               >
                 <p className="text-xs font-bold tracking-[0.16em] uppercase text-[#1D4E89] mb-2">
-                  🗓 Upcoming Community Batch
+                  🗓 Next ravioli
                 </p>
                 <p className="font-bold text-primary text-base leading-snug">
                   {batch.filling}
                 </p>
                 <p className="text-base text-foreground/75 mt-0.5">
-                  Pickup in {batch.location} · {pickupDate}
+                  Pick up in {batch.location} · {pickupDate}
                 </p>
+                {price ? (
+                  <p className="text-sm text-foreground/75 mt-0.5">{price}</p>
+                ) : null}
               </motion.div>
             ) : batchStatus === "sold-out" ? (
               <motion.div
@@ -82,10 +91,10 @@ export default function Hero({ batch }: HeroProps) {
                 className="w-full max-w-sm bg-[#FEF0F0] border border-[#F28C8C]/40 rounded-2xl px-5 py-4 text-left"
               >
                 <p className="font-bold text-[#9f4039]">
-                  This batch is fully requested.
+                  This batch is sold out.
                 </p>
                 <p className="text-base text-[#8A342F] mt-1">
-                  Follow our community to hear about the next Copenhagen pickup.
+                  Follow us on Instagram to hear about the next date.
                 </p>
               </motion.div>
             ) : (
@@ -94,14 +103,14 @@ export default function Hero({ batch }: HeroProps) {
                 className="w-full max-w-sm bg-[#EBF5F1] border border-[#A7D7C5]/60 rounded-2xl px-5 py-4 text-left"
               >
                 <p className="text-xs font-bold tracking-[0.16em] uppercase text-[#1D4E89] mb-2">
-                  Next Community Batch
+                  Next ravioli
                 </p>
                 <p className="font-bold text-primary">
-                  We’re planning the next Copenhagen pickup.
+                  We’re planning the next date.
                 </p>
                 <p className="text-base text-foreground/75 mt-1">
-                  Follow along and we’ll share the date and filling when they’re
-                  ready.
+                  The date and the filling are announced on Instagram first,
+                  then orders open here.
                 </p>
               </motion.div>
             )}
@@ -116,7 +125,7 @@ export default function Hero({ batch }: HeroProps) {
                   className="flex-1 text-center py-3.5 px-6 bg-[#1D4E89] text-white font-bold rounded-full shadow-md hover:bg-[#163d6e] transition-colors text-sm"
                   data-testid="button-hero-join"
                 >
-                  Request a Pickup Spot
+                  Order ravioli
                 </a>
               ) : (
                 <a
@@ -126,8 +135,7 @@ export default function Hero({ batch }: HeroProps) {
                   className="flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 bg-[#1D4E89] text-white font-bold rounded-full shadow-md hover:bg-[#163d6e] transition-colors text-sm"
                   data-testid="button-hero-follow"
                 >
-                  <Instagram size={16} aria-hidden="true" /> Follow Our
-                  Community
+                  <Instagram size={16} aria-hidden="true" /> Follow on Instagram
                 </a>
               )}
               <a
@@ -135,7 +143,7 @@ export default function Hero({ batch }: HeroProps) {
                 className="flex-1 text-center py-3.5 px-6 bg-white border-2 border-[#1D4E89]/20 text-primary font-bold rounded-full hover:bg-[#EEF3FA] transition-colors text-sm"
                 data-testid="button-hero-mission"
               >
-                Learn About the Mission
+                Where the money goes
               </a>
             </motion.div>
           </motion.div>
@@ -157,10 +165,9 @@ export default function Hero({ batch }: HeroProps) {
               decoding="async"
               referrerPolicy="no-referrer"
             />
-            {/* Ocean conservation badge */}
             <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-md">
               <p className="text-xs font-bold text-primary">
-                🌊 100% of proceeds support ocean conservation
+                🌊 All profits go to {PARTNER.name}
               </p>
             </div>
           </motion.div>

@@ -7,6 +7,8 @@ export interface BatchConfig {
   filling: string | null;
   location: string;
   status: BatchStatus;
+  pricePerPortionDkk?: number | null;
+  portionServes?: number;
 }
 
 export type EffectiveBatchStatus = BatchStatus | "expired";

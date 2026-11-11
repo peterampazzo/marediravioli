@@ -10,21 +10,21 @@ const openBatch: BatchConfig = {
   timezone: "Europe/Copenhagen",
   filling: "Ricotta & spinach",
   location: "Copenhagen",
+  pricePerPortionDkk: 130,
+  portionServes: 2,
   status: "open",
 };
 
 describe("pickup request section", () => {
   it("shows a safe planning state for a closed batch", () => {
     render(<OrderForm batch={{ ...openBatch, status: "closed" }} />);
-    expect(screen.getByText("The Next Batch Is Being Planned")).toBeTruthy();
-    expect(
-      screen.queryByTitle("Request a Mare di Ravioli pickup spot"),
-    ).toBeNull();
+    expect(screen.getByText("The next date is being planned")).toBeTruthy();
+    expect(screen.queryByTitle("Order Mare di Ravioli")).toBeNull();
   });
 
   it("does not expose an active form when Tally is unconfigured", () => {
     render(<OrderForm batch={openBatch} tallyFormUrl="" />);
-    expect(screen.getByText("Online Requests Aren’t Open Yet")).toBeTruthy();
+    expect(screen.getByText("Orders are not open yet")).toBeTruthy();
   });
 
   it("embeds Tally and passes the batch details through hidden-field parameters", () => {
@@ -35,7 +35,7 @@ describe("pickup request section", () => {
       />,
     );
 
-    const frame = screen.getByTitle("Request a Mare di Ravioli pickup spot");
+    const frame = screen.getByTitle("Order Mare di Ravioli");
     const url = new URL(frame.getAttribute("src") || "");
 
     expect(url.origin).toBe("https://tally.so");
@@ -43,7 +43,11 @@ describe("pickup request section", () => {
     expect(url.searchParams.get("pickupAt")).toBe(openBatch.pickupAt);
     expect(url.searchParams.get("filling")).toBe(openBatch.filling);
     expect(url.searchParams.get("location")).toBe(openBatch.location);
+    expect(url.searchParams.get("pricePerPortionDkk")).toBe("130");
     expect(url.searchParams.get("transparentBackground")).toBe("1");
+    expect(screen.getByTestId("batch-price").textContent).toBe(
+      "130 DKK per portion (serves 2)",
+    );
   });
 
   it("rejects non-HTTPS form URLs", () => {

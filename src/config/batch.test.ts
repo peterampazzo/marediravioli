@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { formatPickupDate, getEffectiveBatchStatus } from "@/config/batch";
+import {
+  formatPickupDate,
+  formatPrice,
+  getEffectiveBatchStatus,
+} from "@/config/batch";
 import { getPreviewBatch } from "@/config/preview";
 import type { BatchConfig } from "@/types/batch";
 
@@ -41,6 +45,13 @@ describe("batch configuration", () => {
     expect(getEffectiveBatchStatus({ ...openBatch, status: "closed" })).toBe(
       "closed",
     );
+  });
+
+  it("formats the price only when one is configured", () => {
+    expect(formatPrice({ ...openBatch, pricePerPortionDkk: 130 })).toBe(
+      "130 DKK per portion (serves 2)",
+    );
+    expect(formatPrice(openBatch)).toBeNull();
   });
 
   it("formats the pickup date in the configured Copenhagen timezone", () => {

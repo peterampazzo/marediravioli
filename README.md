@@ -30,7 +30,7 @@ Edit `src/config/batch.config.json` and provide:
 
 - a unique batch ID;
 - a future ISO 8601 pickup date with Copenhagen's UTC offset;
-- the filling and public location;
+- the filling, the public pickup location, and the price per portion in DKK;
 - `status: "open"` when the information and form are ready.
 
 An incomplete, invalid, or past open batch automatically fails closed in the browser. The production build also rejects an open batch with a placeholder ID, stale date, missing details, or invalid Tally URL.
@@ -39,7 +39,7 @@ An incomplete, invalid, or past open batch automatically fails closed in the bro
 
 1. Create a Tally form with name, email, optional phone, servings, and optional notes/allergies fields.
 2. Make the thank-you message clear that the request was received and still needs organizer confirmation.
-3. Add these case-sensitive hidden fields in Tally: `batchId`, `pickupAt`, `pickupDate`, `timezone`, `filling`, and `location`.
+3. Add these case-sensitive hidden fields in Tally: `batchId`, `pickupAt`, `pickupDate`, `timezone`, `filling`, `location`, and `pricePerPortionDkk`.
 4. Copy `.env.example` to `.env.local`.
 5. Paste the HTTPS URL from Tally's **Share > Embed** screen into `VITE_TALLY_FORM_URL`.
 

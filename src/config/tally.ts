@@ -35,6 +35,10 @@ export function buildTallyEmbedUrl(
     url.searchParams.set("timezone", batch.timezone);
     url.searchParams.set("filling", batch.filling ?? "");
     url.searchParams.set("location", batch.location);
+    url.searchParams.set(
+      "pricePerPortionDkk",
+      batch.pricePerPortionDkk ? String(batch.pricePerPortionDkk) : "",
+    );
 
     return url.toString();
   } catch {
