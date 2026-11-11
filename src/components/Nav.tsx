@@ -51,14 +51,14 @@ export default function Nav() {
           className="flex items-center gap-8 flex-1"
         >
           <a href="#story" className={linkClass} data-testid="link-nav-story">
-            About
+            Our story
           </a>
           <a
             href="#mission"
             className={linkClass}
             data-testid="link-nav-mission"
           >
-            Our Mission
+            Where the money goes
           </a>
         </nav>
 
@@ -86,22 +86,22 @@ export default function Nav() {
 
         {/* Right nav */}
         <nav
-          aria-label="Participate"
+          aria-label="Order"
           className="flex items-center gap-8 flex-1 justify-end"
         >
           <a
             href="#how-it-works"
             className={linkClass}
-            data-testid="link-nav-events"
+            data-testid="link-nav-how-it-works"
           >
-            Events
+            How it works
           </a>
           <a
             href="#pickup"
             className={`${linkClass} bg-[#F4C542] text-foreground px-5 py-2 rounded-full font-bold hover:bg-[#f0bc30] transition-colors`}
             data-testid="link-nav-join"
           >
-            Join Us
+            Order
           </a>
         </nav>
       </div>
@@ -184,10 +184,10 @@ export default function Nav() {
             className="container mx-auto px-5 py-3 flex flex-col"
           >
             {[
-              { label: "About", href: "#story" },
-              { label: "Our Mission", href: "#mission" },
-              { label: "Events", href: "#how-it-works" },
-              { label: "Join Us", href: "#pickup" },
+              { label: "Our story", href: "#story" },
+              { label: "Where the money goes", href: "#mission" },
+              { label: "How it works", href: "#how-it-works" },
+              { label: "Order", href: "#pickup" },
             ].map((link) => (
               <a
                 key={link.href}

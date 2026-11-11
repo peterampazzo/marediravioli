@@ -3,6 +3,8 @@
   "pickupAt": null,
   "timezone": "Europe/Copenhagen",
   "filling": null,
-  "location": "Copenhagen",
+  "location": "Østerbro, Copenhagen",
+  "pricePerPortionDkk": 130,
+  "portionServes": 2,
   "status": "closed"
 }

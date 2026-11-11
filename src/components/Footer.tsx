@@ -1,7 +1,8 @@
 import { Instagram, Heart } from "lucide-react";
 import logoFull from "@assets/logo-full-white-transparent.png";
 import FacebookIcon from "@/components/icons/FacebookIcon";
-import { BRAND_SLOGAN } from "@/config/brand";
+import { BRAND_SLOGAN, TEAM } from "@/config/brand";
+import { PARTNER } from "@/config/impact";
 import { SOCIAL_LINKS } from "@/config/social";
 
 interface FooterProps {
@@ -45,16 +46,18 @@ export default function Footer({ reservePreviewSpace = false }: FooterProps) {
 
           <p className="text-base font-bold text-white">{BRAND_SLOGAN}</p>
 
-          <p className="text-sm text-white/75 -mt-2">
-            A Copenhagen community initiative 🌊
+          <p className="max-w-md text-sm text-white/75 -mt-2 leading-relaxed">
+            A non-profit run by {TEAM.slice(0, -1).join(", ")} and{" "}
+            {TEAM[TEAM.length - 1]} in Copenhagen. All profits go to{" "}
+            {PARTNER.name}.
           </p>
 
           <div className="flex flex-wrap gap-6 text-sm justify-center">
             {[
-              { label: "About", href: "#story" },
-              { label: "Our Mission", href: "#mission" },
-              { label: "How It Works", href: "#how-it-works" },
-              { label: "Request a Spot", href: "#pickup" },
+              { label: "Our story", href: "#story" },
+              { label: "Where the money goes", href: "#mission" },
+              { label: "How it works", href: "#how-it-works" },
+              { label: "Order", href: "#pickup" },
             ].map((l) => (
               <a
                 key={l.href}

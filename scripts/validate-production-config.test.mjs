@@ -12,6 +12,8 @@ const openBatch = {
   timezone: "Europe/Copenhagen",
   filling: "Ricotta & spinach",
   location: "Copenhagen",
+  pricePerPortionDkk: 130,
+  portionServes: 2,
   status: "open",
 };
 

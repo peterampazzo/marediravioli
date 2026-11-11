@@ -42,3 +42,10 @@ export function formatPickupDate(batch: BatchConfig): string {
     timeZone: batch.timezone,
   }).format(pickupDate);
 }
+
+export function formatPrice(batch: BatchConfig): string | null {
+  if (!batch.pricePerPortionDkk) return null;
+
+  const serves = batch.portionServes ?? 2;
+  return `${batch.pricePerPortionDkk} DKK per portion (serves ${serves})`;
+}

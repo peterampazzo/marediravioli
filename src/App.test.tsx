@@ -38,9 +38,7 @@ describe("development batch preview", () => {
 
     await user.selectOptions(selector, "sold-out");
 
-    expect(
-      await screen.findByText("This Batch Is Fully Requested"),
-    ).toBeTruthy();
+    expect(await screen.findByText("This batch is sold out")).toBeTruthy();
     expect(new URL(window.location.href).searchParams.get("previewBatch")).toBe(
       "sold-out",
     );
@@ -55,8 +53,6 @@ describe("development batch preview", () => {
       "missing-form",
     );
 
-    expect(
-      await screen.findByText("Online Requests Aren’t Open Yet"),
-    ).toBeTruthy();
+    expect(await screen.findByText("Orders are not open yet")).toBeTruthy();
   });
 });

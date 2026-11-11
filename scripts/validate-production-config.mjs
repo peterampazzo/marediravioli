@@ -73,6 +73,13 @@ export function validateProductionConfig({
       errors.push("An open batch needs a filling.");
     }
 
+    if (
+      typeof batch.pricePerPortionDkk !== "number" ||
+      !(batch.pricePerPortionDkk > 0)
+    ) {
+      errors.push("An open batch needs a positive pricePerPortionDkk.");
+    }
+
     if (!isValidTallyEmbedUrl(tallyFormUrl)) {
       errors.push(
         "An open batch needs VITE_TALLY_FORM_URL set to an HTTPS tally.so/embed/... URL.",
